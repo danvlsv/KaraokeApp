@@ -1,0 +1,88 @@
+﻿
+<table class="cal" style="width:50%">
+
+    <tr>
+        <th>Понедельник</th>
+        <th>Вторник</th>
+        <th>Среда</th>
+        <th>Четверг</th>
+        <th>Пятница</th>
+        <th>Суббота</th>
+		<th>Воскресенье</th>
+    </tr>
+
+    @{
+        DateOnly day = FirstMonday;
+        Console.WriteLine(day);
+    }
+
+    @for (int week = 0; week <= 3; week++)
+    {
+        Console.WriteLine(DateTime.Now.DayOfWeek);
+        <tr>
+        @for (int i=0;i<=6;i++)
+        {
+                
+
+                if ((day < today) || (availableDates.Contains(day) == false))
+                {
+                    <td  class="unavailable-date">@day.ToString()</td>
+                }
+                else
+                {
+                    string dayString = day.ToString();
+                    <td style="background-color:@(day==ChosenDate ? "#4CC160" : "white")" class="available-date" @onclick="()=>DateChoice(dayString)">
+                        @day.ToString()
+                    </td>
+                }
+                day = day.AddDays(1);
+
+        }        
+        </tr>
+    }
+
+
+</table>
+
+
+
+@code {
+
+    [Parameter]
+    public DateOnly ChosenDate { get; set; }
+
+    [Parameter]
+    public EventCallback<DateOnly>ChosenDateChanged { get; set; }
+
+    List<DateOnly> availableDates = new List<DateOnly>
+    {
+        new DateOnly(2024,10,31),
+        new DateOnly(2024,10,28),
+        new DateOnly(2024,10,25),
+    };
+
+    DateOnly today = DateOnly.FromDateTime(DateTime.Now);
+
+    public static DateOnly StartOfWeek()
+    {
+        DateOnly today = DateOnly.FromDateTime(DateTime.Now);
+        int diff = DayOfWeek.Monday - today.DayOfWeek;
+        Console.WriteLine(today.AddDays(diff).DayOfWeek);
+        Console.WriteLine(today.AddDays(diff));
+        return today.AddDays(diff);
+    }
+
+    
+
+
+    public async Task DateChoice(string date)
+    {
+        ChosenDate = DateOnly.Parse(date);
+        Console.WriteLine($"{date} pressed");
+        await ChosenDateChanged.InvokeAsync(ChosenDate);
+
+    }
+
+    DateOnly FirstMonday = StartOfWeek();
+
+}

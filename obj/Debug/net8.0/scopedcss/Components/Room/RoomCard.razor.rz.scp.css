@@ -1,0 +1,12 @@
+.rooms-container[b-z5mu7173tl] {
+    width: 100%;
+    /* padding-left: 3.5rem;
+    padding-right: 3.5rem;*/
+}
+
+.rooms-list[b-z5mu7173tl] {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}

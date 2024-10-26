@@ -1,0 +1,42 @@
+﻿.room {
+    width: 27rem;
+    height: 20rem;
+    border-radius: 20px;
+    padding: 0px;
+   
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.room-div {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background-color: #BD3838;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+}
+
+.room-image {
+    width:60%;
+    height:100%;
+}
+
+.room-info {
+    font-size: 0.8rem;
+    width: 40%;
+    height: 100%;
+    color: white;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.room-button {
+
+    margin-top: 2rem;
+}

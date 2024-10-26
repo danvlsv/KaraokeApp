@@ -1,0 +1,54 @@
+﻿
+@page "/"
+@inherits LayoutComponentBase
+@rendermode InteractiveServer
+
+
+<PageTitle>Караоке</PageTitle>
+
+
+<div class="landing">
+		
+
+	<div class="firstCard">
+		
+		<h1>Караоке "Название"</h1>
+
+
+		@* <StartButton>Забронировать</StartButton> *@
+
+
+	</div>
+
+	<div class="header">
+		<h1>1. Выберите комнату</h1>
+	</div>
+
+
+	
+	<div class="header">
+		<h1>2. Выберите дату</h1>
+	</div>
+	
+	<CalendarCard/>
+
+	
+
+	@* <div class="card">
+		<p>Новое караоке</p>
+	</div> *@
+</div>
+
+
+
+@code {
+	private int curCount = 1;
+	private void IncrementCount()
+	{
+		curCount++;
+	}
+
+
+
+	
+}

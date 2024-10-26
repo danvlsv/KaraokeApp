@@ -1,0 +1,13 @@
+﻿<Calendar @bind-ChosenDate="ChosenDate"/>
+
+	<div class="date-choice">
+		@if (ChosenDate != DateOnly.MinValue)
+		{
+			<p>Выбрана дата: @ChosenDate</p>
+		}
+		
+	</div>
+
+@code {
+	public DateOnly ChosenDate { get; set; }
+}

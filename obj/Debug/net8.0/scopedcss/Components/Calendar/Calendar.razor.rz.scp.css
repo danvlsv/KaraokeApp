@@ -1,0 +1,29 @@
+td[b-b1i9zb59mi], th[b-b1i9zb59mi] {
+    border: 1px solid #dddddd;
+    padding: 1rem 0.5rem 1rem 0.5rem;
+}
+
+th[b-b1i9zb59mi] {
+    background-color: #BD3838;
+    width:3rem;
+    
+}
+
+.cal[b-b1i9zb59mi] {
+    background-color: black;
+    color: white;
+    margin-bottom: 2rem;
+}
+
+.unavailable-date[b-b1i9zb59mi]{
+    background-color: #282626;
+    cursor: not-allowed;
+    
+
+}
+
+.available-date[b-b1i9zb59mi] {
+    background-color:white;
+    color: black;
+    cursor: pointer;
+}

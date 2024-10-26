@@ -1,0 +1,45 @@
+﻿
+<div class="room" style="border: @SetBorder()">
+<div class="room-div" >
+	<div class="room-image" style=" background-image: url(@ImgUrl)">
+
+	</div>
+	<div class="room-info" >
+		<h1>Комната №@RoomNumber</h1>
+		<h2>Максимальная вместимость:<br/>@MaxCapacity @CorrectWord()</h2>
+		<div class="room-button">
+			<button @onclick=@(()=>Pressed =!Pressed)>Выбрать</button>
+		</div>
+		
+	</div>
+</div>
+</div>
+
+@code {
+	[Parameter]
+	public int RoomNumber { get; set; } 
+
+	[Parameter]
+	public int MaxCapacity { get; set; }
+
+	[Parameter]
+	public string ImgUrl { get; set; }
+
+	bool Pressed = false;
+
+	string CorrectWord()
+	{
+		List<int> check = [2, 3, 4 ];
+		if (check.Contains(MaxCapacity))
+		{
+			return "человека";
+		}
+		return "человек";
+	}
+
+	string SetBorder()
+	{
+		return Pressed ? "5px solid white" : "5px solid transparent";
+		
+	}
+}

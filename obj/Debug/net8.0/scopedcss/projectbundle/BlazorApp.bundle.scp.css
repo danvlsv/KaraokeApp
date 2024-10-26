@@ -1,0 +1,214 @@
+/* _content/BlazorApp/Components/Calendar/Calendar.razor.rz.scp.css */
+td[b-b1i9zb59mi], th[b-b1i9zb59mi] {
+    border: 1px solid #dddddd;
+    padding: 1rem 0.5rem 1rem 0.5rem;
+}
+
+th[b-b1i9zb59mi] {
+    background-color: #BD3838;
+    width:3rem;
+    
+}
+
+.cal[b-b1i9zb59mi] {
+    background-color: black;
+    color: white;
+    margin-bottom: 2rem;
+}
+
+.unavailable-date[b-b1i9zb59mi]{
+    background-color: #282626;
+    cursor: not-allowed;
+    
+
+}
+
+.available-date[b-b1i9zb59mi] {
+    background-color:white;
+    color: black;
+    cursor: pointer;
+}
+/* _content/BlazorApp/Components/Calendar/CalendarCard.razor.rz.scp.css */
+.date-choice[b-ef7yjh1lq2] {
+    height: 2rem;
+    color: white;
+    font-size: 2rem;
+}
+/* _content/BlazorApp/Components/Layout/MainLayout.razor.rz.scp.css */
+
+
+.navbar[b-qgsvw684bo] {
+    display: flex;
+    align-items: center;
+    position:sticky;
+    height: 70px;
+    top:0;
+    background-color:black;
+    padding-top:0.6rem;
+    
+}
+
+    .navbar ul[b-qgsvw684bo] {
+        list-style-type: none;
+        margin: 0;
+        margin-left: 3.5rem;
+        padding: 0;
+    }
+
+    .navbar-logo[b-qgsvw684bo] {
+        font-family: Jomhuria;
+        font-size: 4.3rem;
+        padding-right: 2rem;
+    }
+
+    .navbar li[b-qgsvw684bo] {
+        display: inline;
+        margin-right: 2rem;
+        color: white;
+        margin-bottom: 2rem;
+    }
+
+        .navbar li a[b-qgsvw684bo] {
+            color: white;
+            font-size:1.2rem;
+        }
+
+
+
+
+#blazor-error-ui[b-qgsvw684bo] {
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+    #blazor-error-ui .dismiss[b-qgsvw684bo] {
+        cursor: pointer;
+        position: absolute;
+        right: 0.75rem;
+        top: 0.5rem;
+    }
+/* _content/BlazorApp/Components/Pages/Home.razor.rz.scp.css */
+.landing[b-7gt2111kuu] {
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    text-align: center;
+    flex-direction:column;
+    margin-bottom: 5rem;
+    width:100%;
+}
+
+.firstCard[b-7gt2111kuu] {
+
+    height: 25rem;
+    text-align: center;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    font-size: 1.7rem;
+}
+
+
+
+.card[b-7gt2111kuu] {
+
+    background-color: white;
+    padding: 20px;
+    margin-left: 3.5rem;
+    margin-right: 3.5rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border: solid;
+    border-radius: 20px;
+
+}
+
+
+
+.header[b-7gt2111kuu] {
+    background-color: #BD3838;
+    color: white;
+    width: 100%;
+    height: 2rem;
+
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: row;
+    padding-left: 0rem;
+}
+
+    .header h1[b-7gt2111kuu] {
+        margin-left: 3.5rem;
+    }
+
+/* _content/BlazorApp/Components/Room/Room.razor.rz.scp.css */
+.room[b-ukwvujwu6e] {
+    width: 27rem;
+    height: 20rem;
+    border-radius: 20px;
+    padding: 0px;
+   
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.room-div[b-ukwvujwu6e] {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background-color: #BD3838;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+}
+
+.room-image[b-ukwvujwu6e] {
+    width:60%;
+    height:100%;
+}
+
+.room-info[b-ukwvujwu6e] {
+    font-size: 0.8rem;
+    width: 40%;
+    height: 100%;
+    color: white;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.room-button[b-ukwvujwu6e] {
+
+    margin-top: 2rem;
+}
+/* _content/BlazorApp/Components/Room/RoomCard.razor.rz.scp.css */
+.rooms-container[b-z5mu7173tl] {
+    width: 100%;
+    /* padding-left: 3.5rem;
+    padding-right: 3.5rem;*/
+}
+
+.rooms-list[b-z5mu7173tl] {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}

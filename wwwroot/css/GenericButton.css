@@ -1,0 +1,15 @@
+﻿button {
+    padding: 7px 15px;
+    cursor: pointer;
+    font-family: Bahnschrift;
+    font-size: 1.4rem;
+    background-color: white;
+    border: 0px;
+    border-radius: 4px;
+    transition: all .5s ease-in-out;
+}
+
+    button:hover {
+        transform: scale(1.1);
+        box-shadow: 0px 0px 5px #e7eded;
+    }
