@@ -3,20 +3,28 @@
   "WorkspaceRootPath": "D:\\BlazorApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E58AAD2D-9D64-4B13-9EEB-FD42F9D85677}|BlazorApp.csproj|d:\\blazorapp\\components\\room\\roomcard.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{E58AAD2D-9D64-4B13-9EEB-FD42F9D85677}|BlazorApp.csproj|solutionrelative:components\\room\\roomcard.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E58AAD2D-9D64-4B13-9EEB-FD42F9D85677}|BlazorApp.csproj|d:\\blazorapp\\components\\pages\\home.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{E58AAD2D-9D64-4B13-9EEB-FD42F9D85677}|BlazorApp.csproj|solutionrelative:components\\pages\\home.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E58AAD2D-9D64-4B13-9EEB-FD42F9D85677}|BlazorApp.csproj|d:\\blazorapp\\components\\room\\roomcard.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E58AAD2D-9D64-4B13-9EEB-FD42F9D85677}|BlazorApp.csproj|solutionrelative:components\\room\\roomcard.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E58AAD2D-9D64-4B13-9EEB-FD42F9D85677}|BlazorApp.csproj|d:\\blazorapp\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{E58AAD2D-9D64-4B13-9EEB-FD42F9D85677}|BlazorApp.csproj|solutionrelative:components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E58AAD2D-9D64-4B13-9EEB-FD42F9D85677}|BlazorApp.csproj|d:\\blazorapp\\components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E58AAD2D-9D64-4B13-9EEB-FD42F9D85677}|BlazorApp.csproj|solutionrelative:components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E58AAD2D-9D64-4B13-9EEB-FD42F9D85677}|BlazorApp.csproj|d:\\blazorapp\\components\\room\\room.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E58AAD2D-9D64-4B13-9EEB-FD42F9D85677}|BlazorApp.csproj|solutionrelative:components\\room\\room.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E58AAD2D-9D64-4B13-9EEB-FD42F9D85677}|BlazorApp.csproj|d:\\blazorapp\\components\\room\\roomcard.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{E58AAD2D-9D64-4B13-9EEB-FD42F9D85677}|BlazorApp.csproj|solutionrelative:components\\room\\roomcard.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E58AAD2D-9D64-4B13-9EEB-FD42F9D85677}|BlazorApp.csproj|d:\\blazorapp\\components\\room\\roomcard.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E58AAD2D-9D64-4B13-9EEB-FD42F9D85677}|BlazorApp.csproj|solutionrelative:components\\room\\roomcard.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E58AAD2D-9D64-4B13-9EEB-FD42F9D85677}|BlazorApp.csproj|d:\\blazorapp\\components\\calendar\\calendarcard.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
@@ -47,16 +55,8 @@
       "RelativeMoniker": "D:0:0:{E58AAD2D-9D64-4B13-9EEB-FD42F9D85677}|BlazorApp.csproj|solutionrelative:wwwroot\\css\\genericbutton.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E58AAD2D-9D64-4B13-9EEB-FD42F9D85677}|BlazorApp.csproj|d:\\blazorapp\\components\\room\\room.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E58AAD2D-9D64-4B13-9EEB-FD42F9D85677}|BlazorApp.csproj|solutionrelative:components\\room\\room.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E58AAD2D-9D64-4B13-9EEB-FD42F9D85677}|BlazorApp.csproj|d:\\blazorapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E58AAD2D-9D64-4B13-9EEB-FD42F9D85677}|BlazorApp.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E58AAD2D-9D64-4B13-9EEB-FD42F9D85677}|BlazorApp.csproj|d:\\blazorapp\\components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E58AAD2D-9D64-4B13-9EEB-FD42F9D85677}|BlazorApp.csproj|solutionrelative:components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E58AAD2D-9D64-4B13-9EEB-FD42F9D85677}|BlazorApp.csproj|d:\\blazorapp\\components\\layout\\mainlayout.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
@@ -86,7 +86,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 13,
           "Children": [
             {
               "$type": "Bookmark",
@@ -94,20 +94,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "RoomCard.razor.css",
               "DocumentMoniker": "D:\\BlazorApp\\Components\\Room\\RoomCard.razor.css",
               "RelativeDocumentMoniker": "Components\\Room\\RoomCard.razor.css",
               "ToolTip": "D:\\BlazorApp\\Components\\Room\\RoomCard.razor.css",
               "RelativeToolTip": "Components\\Room\\RoomCard.razor.css",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2024-10-26T10:13:49.23Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "RoomCard.razor",
               "DocumentMoniker": "D:\\BlazorApp\\Components\\Room\\RoomCard.razor",
               "RelativeDocumentMoniker": "Components\\Room\\RoomCard.razor",
@@ -115,11 +115,12 @@
               "RelativeToolTip": "Components\\Room\\RoomCard.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-26T10:13:23.976Z"
+              "WhenOpened": "2024-10-26T10:13:23.976Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "CalendarCard.razor.css",
               "DocumentMoniker": "D:\\BlazorApp\\Components\\Calendar\\CalendarCard.razor.css",
               "RelativeDocumentMoniker": "Components\\Calendar\\CalendarCard.razor.css",
@@ -127,11 +128,12 @@
               "RelativeToolTip": "Components\\Calendar\\CalendarCard.razor.css",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-10-26T09:49:56.438Z"
+              "WhenOpened": "2024-10-26T09:49:56.438Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "_Imports.razor",
               "DocumentMoniker": "D:\\BlazorApp\\Components\\_Imports.razor",
               "RelativeDocumentMoniker": "Components\\_Imports.razor",
@@ -139,11 +141,12 @@
               "RelativeToolTip": "Components\\_Imports.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-26T09:48:50.27Z"
+              "WhenOpened": "2024-10-26T09:48:50.27Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "CalendarCard.razor",
               "DocumentMoniker": "D:\\BlazorApp\\Components\\Calendar\\CalendarCard.razor",
               "RelativeDocumentMoniker": "Components\\Calendar\\CalendarCard.razor",
@@ -151,11 +154,12 @@
               "RelativeToolTip": "Components\\Calendar\\CalendarCard.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-26T09:47:38.834Z"
+              "WhenOpened": "2024-10-26T09:47:38.834Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "Calendar.razor",
               "DocumentMoniker": "D:\\BlazorApp\\Components\\Calendar\\Calendar.razor",
               "RelativeDocumentMoniker": "Components\\Calendar\\Calendar.razor",
@@ -163,11 +167,12 @@
               "RelativeToolTip": "Components\\Calendar\\Calendar.razor",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAFcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-25T19:35:17.236Z"
+              "WhenOpened": "2024-10-25T19:35:17.236Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "Calendar.razor.css",
               "DocumentMoniker": "D:\\BlazorApp\\Components\\Calendar\\Calendar.razor.css",
               "RelativeDocumentMoniker": "Components\\Calendar\\Calendar.razor.css",
@@ -175,11 +180,12 @@
               "RelativeToolTip": "Components\\Calendar\\Calendar.razor.css",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-10-25T14:19:21.191Z"
+              "WhenOpened": "2024-10-25T14:19:21.191Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "GenericButton.css",
               "DocumentMoniker": "D:\\BlazorApp\\wwwroot\\css\\GenericButton.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\GenericButton.css",
@@ -187,11 +193,12 @@
               "RelativeToolTip": "wwwroot\\css\\GenericButton.css",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-10-24T18:08:58.291Z"
+              "WhenOpened": "2024-10-24T18:08:58.291Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "Room.razor.css",
               "DocumentMoniker": "D:\\BlazorApp\\Components\\Room\\Room.razor.css",
               "RelativeDocumentMoniker": "Components\\Room\\Room.razor.css",
@@ -199,19 +206,21 @@
               "RelativeToolTip": "Components\\Room\\Room.razor.css",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-10-24T11:52:35.425Z"
+              "WhenOpened": "2024-10-24T11:52:35.425Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 3,
               "Title": "Room.razor",
               "DocumentMoniker": "D:\\BlazorApp\\Components\\Room\\Room.razor",
               "RelativeDocumentMoniker": "Components\\Room\\Room.razor",
               "ToolTip": "D:\\BlazorApp\\Components\\Room\\Room.razor",
               "RelativeToolTip": "Components\\Room\\Room.razor",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAACkAAAA+AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACkAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-24T11:41:45.569Z"
+              "WhenOpened": "2024-10-24T11:41:45.569Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -223,7 +232,8 @@
               "RelativeToolTip": "wwwroot\\app.css",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-10-05T20:20:45.044Z"
+              "WhenOpened": "2024-10-05T20:20:45.044Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -235,43 +245,47 @@
               "RelativeToolTip": "Components\\Buttons\\StartButton.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-24T17:55:14.717Z"
+              "WhenOpened": "2024-10-24T17:55:14.717Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Home.razor.css",
               "DocumentMoniker": "D:\\BlazorApp\\Components\\Pages\\Home.razor.css",
               "RelativeDocumentMoniker": "Components\\Pages\\Home.razor.css",
               "ToolTip": "D:\\BlazorApp\\Components\\Pages\\Home.razor.css",
               "RelativeToolTip": "Components\\Pages\\Home.razor.css",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAACoAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-10-11T14:50:39.866Z"
+              "WhenOpened": "2024-10-11T14:50:39.866Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 2,
               "Title": "MainLayout.razor",
               "DocumentMoniker": "D:\\BlazorApp\\Components\\Layout\\MainLayout.razor",
               "RelativeDocumentMoniker": "Components\\Layout\\MainLayout.razor",
               "ToolTip": "D:\\BlazorApp\\Components\\Layout\\MainLayout.razor",
               "RelativeToolTip": "Components\\Layout\\MainLayout.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAeAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-05T20:21:11.86Z"
+              "WhenOpened": "2024-10-05T20:21:11.86Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "Home.razor",
               "DocumentMoniker": "D:\\BlazorApp\\Components\\Pages\\Home.razor",
               "RelativeDocumentMoniker": "Components\\Pages\\Home.razor",
               "ToolTip": "D:\\BlazorApp\\Components\\Pages\\Home.razor",
               "RelativeToolTip": "Components\\Pages\\Home.razor",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-05T20:21:42.28Z"
+              "WhenOpened": "2024-10-05T20:21:42.28Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -283,11 +297,12 @@
               "RelativeToolTip": "Components\\Layout\\MainLayout.razor.css",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-10-05T20:30:31.171Z"
+              "WhenOpened": "2024-10-05T20:30:31.171Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\BlazorApp\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -295,7 +310,8 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAnwBoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-18T11:56:11.397Z"
+              "WhenOpened": "2024-10-18T11:56:11.397Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -307,7 +323,8 @@
               "RelativeToolTip": "Components\\Pages\\Contacts.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-06T18:13:58.571Z"
+              "WhenOpened": "2024-10-06T18:13:58.571Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -319,7 +336,8 @@
               "RelativeToolTip": "Components\\App.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-05T20:20:39.525Z"
+              "WhenOpened": "2024-10-05T20:20:39.525Z",
+              "EditorCaption": ""
             }
           ]
         },
