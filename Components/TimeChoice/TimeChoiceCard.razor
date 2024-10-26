@@ -1,0 +1,60 @@
+﻿@{
+	int hour = 8;
+	for (int i = 0; i <= 3; i++)
+	{
+		<div class="hours-row">
+			@for (int j = 0; j <= 3; j++)
+			{
+				
+				TimeOnly time = new TimeOnly(hour, 0);
+				Console.WriteLine(time);
+				if (availableTimes.Contains(time))
+				{
+					Console.WriteLine("Доступное время");
+					<div class="available-time" 
+						style="background-color:@(time==ChosenTime ? "#4CC160" : "white" )" 
+						@onclick="()=>ChosenTime=time"
+					>
+						<p>@hour:00</p>
+					</div>
+
+				}
+				else
+				{
+					<div class="unavailable-time">
+						<p>@hour:00</p>
+					</div>
+
+				}
+				
+				hour++;
+			}
+		</div>
+	}
+}
+
+<div class="time-choice">
+	@if (ChosenTime != TimeOnly.MinValue)
+	{
+		<p>Выбран промежуток времени с @ChosenTime-@ChosenTime.AddHours(1)</p>
+	}
+
+</div>
+
+@code {
+
+	TimeOnly ChosenTime { get; set; }
+
+	List<TimeOnly> availableTimes = new List<TimeOnly>
+	{
+		new TimeOnly(10,0),
+		new TimeOnly(12,0),
+		new TimeOnly(18,0),
+	};
+
+	string SetBorder(TimeOnly time)
+	{
+		return ChosenTime == time ? "5px solid #BD3838" : "5px solid transparent";
+
+	}
+}

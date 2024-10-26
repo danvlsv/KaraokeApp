@@ -1,12 +1,25 @@
 ﻿<div class="rooms-container" >
 <div class="rooms-list" >
-<Room RoomNumber="1" MaxCapacity="5" />
-<Room RoomNumber="2" MaxCapacity="2" />
-<Room RoomNumber="3" MaxCapacity="2" />
+	
+		<Room @bind-ChosenRoomID="ChosenRoomID" RoomNumber="1" MaxCapacity="5" />
+		<Room @bind-ChosenRoomID="ChosenRoomID" RoomNumber="2" MaxCapacity="2" />
+		<Room @bind-ChosenRoomID="ChosenRoomID" RoomNumber="3" MaxCapacity="2" />
+
 </div >
+
+<div class="room-choice">
+		@if (ChosenRoomID !=0)
+		{
+			<p>Выбрана комната №@ChosenRoomID</p>
+		}
+	</div>
 </div >
 
 
 @code {
+
+
+	public int ChosenRoomID { get; set; } 
+
 
 }

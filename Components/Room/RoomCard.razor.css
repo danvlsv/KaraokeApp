@@ -9,4 +9,14 @@
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    margin-bottom:1rem;
+}
+
+.room-choice {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 6rem;
+    color: white;
+    font-size: 2rem;
 }

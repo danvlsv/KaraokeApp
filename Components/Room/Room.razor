@@ -8,7 +8,7 @@
 		<h1>Комната №@RoomNumber</h1>
 		<h2>Максимальная вместимость:<br/>@MaxCapacity @CorrectWord()</h2>
 		<div class="room-button">
-			<button @onclick=@(()=>Pressed =!Pressed)>Выбрать</button>
+			<button @onclick=@RoomChoice>Выбрать</button>
 		</div>
 		
 	</div>
@@ -16,6 +16,21 @@
 </div>
 
 @code {
+
+	[Parameter]
+	public int ChosenRoomID { get; set; }
+
+	[Parameter]
+	public EventCallback<int> ChosenRoomIDChanged { get; set; }
+
+	public async Task RoomChoice()
+	{
+		ChosenRoomID = RoomNumber;
+		await ChosenRoomIDChanged.InvokeAsync(ChosenRoomID);
+
+	}
+
+
 	[Parameter]
 	public int RoomNumber { get; set; } 
 
@@ -39,7 +54,7 @@
 
 	string SetBorder()
 	{
-		return Pressed ? "5px solid white" : "5px solid transparent";
+		return ChosenRoomID == RoomNumber ? "5px solid white" : "5px solid transparent";
 		
 	}
 }

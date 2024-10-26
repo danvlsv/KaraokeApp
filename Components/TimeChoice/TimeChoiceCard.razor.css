@@ -1,0 +1,39 @@
+﻿.hours-row {
+    display: flex;
+    flex-direction: row;
+}
+
+    .hours-row div {
+        align-content: center;
+        width: 8rem;
+        height: 3.8rem;
+        font-size: 1.4rem;
+        border-radius: 20px;
+        margin-right: 0.8rem;
+        margin-bottom: 1rem;
+    }
+
+        .hours-row div p {
+            margin:0;
+        }
+
+.available-time {
+    cursor: pointer;
+    background-color: white;
+    color: black;
+}
+
+.unavailable-time {
+    background-color: #282626;
+    color: white;
+}
+
+.time-choice {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5rem;
+    color: white;
+    font-size: 2rem;
+}
+
