@@ -1,4 +1,10 @@
-﻿@{
+﻿@using BlazorApp.Backend
+@inject Backend.DbManager DbManager
+@{
+	@foreach (var booking in bookings)
+	{
+		Console.WriteLine(booking.Id + " " + booking.RoomNumber + " " + booking.Date + " " + booking.Time + " " + booking.Name + " " + booking.Phone + " " + booking.Extra + " " + booking.Status);
+	}
 	int hour = 8;
 	for (int i = 0; i <= 3; i++)
 	{
@@ -8,9 +14,12 @@
 				
 				TimeOnly time = new TimeOnly(hour, 0);
 				Console.WriteLine(time);
+
 				if (availableTimes.Contains(time))
 				{
+
 					Console.WriteLine("Доступное время");
+					
 					<div class="available-time" 
 						style="background-color:@(time==ChosenTime ? "#4CC160" : "white" )" 
 						@onclick="()=>ChosenTime=time"
@@ -42,7 +51,6 @@
 </div>
 
 @code {
-
 	TimeOnly ChosenTime { get; set; }
 
 	List<TimeOnly> availableTimes = new List<TimeOnly>
@@ -56,5 +64,32 @@
 	{
 		return ChosenTime == time ? "5px solid #BD3838" : "5px solid transparent";
 
+	}
+
+	//Миша добавилл код ниже
+
+	private List<Booking> bookings=null;
+	private List<int> Time = null;
+
+	protected override async Task OnInitializedAsync()
+	{
+		//AddBooking();
+		DeleteBooking();
+	}
+
+	private void AddBooking()
+	{
+		// Реализуйте метод для добавления бронирования, например, открыть модальное окно
+		DbManager.AddNewBooking(1, "2023-10-20", 10, "John Doe", "1234567890", "Дополнительные требования");
+		DbManager.AddNewBooking(2, "2023-10-20", 12, "Михаил Фёдоровых", "1234123422", "Нет");
+		DbManager.AddNewBooking(3, "2023-10-20", 11, "Данил Власов", "1111111111", "Нет");
+		DbManager.AddNewBooking(1, "2023-10-20", 7, "Анна Арланова", "1222222222", "Нет");
+		bookings = DbManager.GetAllBooking(); // Обновите список бронирований
+	}
+
+	private void DeleteBooking()
+	{
+		DbManager.DeleteAllBooking();
+		bookings = DbManager.GetAllBooking(); // Обновите список бронирований
 	}
 }

@@ -1,10 +1,17 @@
 using BlazorApp.Components;
+using Microsoft.EntityFrameworkCore;
+using BlazorApp.Backend;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+builder.Services.AddScoped<DbManager>();
 
 var app = builder.Build();
 
