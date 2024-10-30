@@ -1,21 +1,25 @@
 ﻿@using BlazorApp.Backend
 @inject Backend.DbManager DbManager
 @{
-	@foreach (var booking in bookings)
-	{
-		Console.WriteLine(booking.Id + " " + booking.RoomNumber + " " + booking.Date + " " + booking.Time + " " + booking.Name + " " + booking.Phone + " " + booking.Extra + " " + booking.Status);
-	}
+	// @foreach (var booking in bookings)
+	// {
+	// 	Console.WriteLine(booking.Id + " " + booking.RoomNumber + " " + booking.Date + " " + booking.Time + " " + booking.Name + " " + booking.Phone + " " + booking.Extra + " " + booking.Status);
+	// }
 	int hour = 0;
+	int start = 0;
 	for (int i = 0; i <= 4; i++)
 	{
 		<div class="hours-row">
-			@for (int j = 0; j <= 4; j++)
+		@if (i==4){
+			start=1;
+		}
+			@for (int j = start; j <= 4; j++)
 			{
 				int hourNum = hour;
 				// TimeOnly time = new TimeOnly(hour, 0);
 				Console.WriteLine(hourNum);
 
-				if (Time.Contains(hourNum)==false)
+				if (Time.Contains(hourNum) == false)
 				{
 
 					Console.WriteLine("Доступное время");
@@ -44,7 +48,10 @@
 <div class="time-choice">
 	@if (ChosenTime != null)
 	{
-		<p>Выбран промежуток времени с @ChosenTime:00-@(ChosenTime+1):00</p>
+
+		<p>Выбран промежуток времени с @ChosenTime:00-@(ChosenTime + 1):00</p>
+
+
 	}
 
 </div>
@@ -84,7 +91,7 @@
 
 	protected override async Task OnInitializedAsync()
 	{
-		// AddBooking();
+		AddBooking();
 		GetAvailableTimes();
 		// DeleteBooking();
 	}
