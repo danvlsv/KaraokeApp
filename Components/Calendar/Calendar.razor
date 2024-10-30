@@ -1,4 +1,7 @@
-﻿
+﻿@using BlazorApp.Backend
+@inject Backend.DbManager DbManager
+
+
 <table class="cal" style="width:50%">
 
     <tr>
@@ -69,14 +72,14 @@
         Console.Clear();
         DateOnly today = DateOnly.FromDateTime(DateTime.Now);
         int diff = ((int)today.DayOfWeek+5)%6+1;
-        Console.WriteLine(diff);
+        @* Console.WriteLine(diff); *@
         @* int diff = DayOfWeek.Monday - today.DayOfWeek; *@
         @* Console.WriteLine(today.AddDays(diff).DayOfWeek);
         Console.WriteLine(today.AddDays(diff)); *@
         return today.AddDays(-diff);
     }
 
-    
+
 
 
     public async Task DateChoice(string date)
@@ -88,5 +91,33 @@
     }
 
     DateOnly FirstMonday = StartOfWeek();
+    DateOnly LastDay;
+
+
+    List<string> BookedDates = new List<string>();
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        GetAvailableDates();
+        // DeleteBooking();
+    }
+
+    private void GetAvailableDates()
+    {
+        LastDay = FirstMonday.AddDays(4 * 7);
+        for (DateOnly day = DateOnly.FromDateTime(DateTime.Now); day <= LastDay; day = day.AddDays(1))
+        {
+            string dayString = day.ToString();
+            @* Console.WriteLine(dayString); *@
+            if (DbManager.IsDayBooked(dayString) == false)
+            {
+                availableDates.Add(day);
+            }
+        }
+        StateHasChanged();
+
+    }
+
 
 }

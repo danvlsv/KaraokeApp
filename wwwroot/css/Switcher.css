@@ -1,0 +1,51 @@
+﻿.switcher {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5rem;
+    color: white;
+    font-size: 2rem;
+    flex-wrap: wrap;
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
+    min-height: 7rem;
+    max-height:15rem;
+    width: auto;
+    flex-direction: column;
+}
+
+    .switcher p {
+        width: 50%;
+        /*margin: 0rem 7rem;*/
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+
+@media screen and (max-width:700px){
+    .switcher{
+       
+        flex-wrap: nowrap;
+    }
+}
+
+.quarter {
+    width: 25%;
+    
+    height: auto;
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.switcher button {
+    background-color: #BD3838;
+    color: white;
+    font-size: 2rem;
+    padding: 10px 40px;
+}
+
+    .switcher button:hover {
+        transform: scale(1.1);
+        
+    }

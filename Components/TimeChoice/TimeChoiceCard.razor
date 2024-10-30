@@ -17,12 +17,12 @@
 			{
 				int hourNum = hour;
 				// TimeOnly time = new TimeOnly(hour, 0);
-				Console.WriteLine(hourNum);
+				// Console.WriteLine(hourNum);
 
 				if (Time.Contains(hourNum) == false)
 				{
 
-					Console.WriteLine("Доступное время");
+					// Console.WriteLine("Доступное время");
 
 					<div class="available-time"
 						 style="background-color:@(hourNum==ChosenTime ? "#4CC160" : "white" )"
@@ -91,29 +91,29 @@
 
 	protected override async Task OnInitializedAsync()
 	{
-		AddBooking();
-		GetAvailableTimes();
+		// AddBooking();
+		await GetAvailableTimes();
 		// DeleteBooking();
 	}
 
-	private void GetAvailableTimes()
+	private async Task GetAvailableTimes()
 	{
 		Time = DbManager.GetAllBookedTimeOfDay("30.10.2024");
 	}
 
-	private void AddBooking()
-	{
-		// Реализуйте метод для добавления бронирования, например, открыть модальное окно
-		DbManager.AddNewBooking(1, "30.10.2024", 10, "John Doe", "1234567890", "Дополнительные требования");
-		DbManager.AddNewBooking(2, "30.10.2024", 12, "Михаил Фёдоровых", "1234123422", "Нет");
-		DbManager.AddNewBooking(3, "30.10.2024", 11, "Данил Власов", "1111111111", "Нет");
-		DbManager.AddNewBooking(1, "30.10.2024", 7, "Анна Арланова", "1222222222", "Нет");
-		bookings = DbManager.GetAllBooking(); // Обновите список бронирований
-	}
+	// private void AddBooking()
+	// {
+	// 	// Реализуйте метод для добавления бронирования, например, открыть модальное окно
+	// 	DbManager.AddNewBooking(1, "30.10.2024", 10, "John Doe", "1234567890", "Дополнительные требования");
+	// 	DbManager.AddNewBooking(2, "30.10.2024", 12, "Михаил Фёдоровых", "1234123422", "Нет");
+	// 	DbManager.AddNewBooking(3, "30.10.2024", 11, "Данил Власов", "1111111111", "Нет");
+	// 	DbManager.AddNewBooking(1, "30.10.2024", 7, "Анна Арланова", "1222222222", "Нет");
+	// 	bookings = DbManager.GetAllBooking(); // Обновите список бронирований
+	// }
 
-	private void DeleteBooking()
-	{
-		DbManager.DeleteAllBooking();
-		bookings = DbManager.GetAllBooking(); // Обновите список бронирований
-	}
+	// private void DeleteBooking()
+	// {
+	// 	DbManager.DeleteAllBooking();
+	// 	bookings = DbManager.GetAllBooking(); // Обновите список бронирований
+	// }
 }

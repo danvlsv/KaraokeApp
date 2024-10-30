@@ -7,10 +7,15 @@
 
 </div >
 
-<div class="room-choice">
+<div class="switcher">
 		@if (ChosenRoomID !=0)
 		{
+			
 			<p>Выбрана комната №@ChosenRoomID</p>
+			<div class="quarter button-div">
+				@ChildContent
+			</div>
+			
 		}
 	</div>
 </div >
@@ -18,8 +23,12 @@
 
 @code {
 
+	[Parameter]
+	public RenderFragment? ChildContent { get; set; }
 
 	public int ChosenRoomID { get; set; } 
 
+	
+	}
 
-}
+
