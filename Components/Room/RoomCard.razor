@@ -1,4 +1,6 @@
-﻿<div class="rooms-container" >
+﻿<link rel="stylesheet" href="/css/Switcher.css" />
+
+<div class="rooms-container" >
 <div class="rooms-list" >
 	
 		<Room @bind-ChosenRoomID="ChosenRoomID" RoomNumber="1" MaxCapacity="5" />
@@ -10,13 +12,17 @@
 <div class="switcher">
 		@if (ChosenRoomID !=0)
 		{
+			@* <div class="half"> *@
+				<p>Выбрана комната №@ChosenRoomID</p>
+			@* </div> *@
 			
-			<p>Выбрана комната №@ChosenRoomID</p>
 			<div class="quarter button-div">
 				@ChildContent
 			</div>
 			
 		}
+
+		
 	</div>
 </div >
 

@@ -1,41 +1,74 @@
 ﻿.switcher {
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 5rem;
+    height: 6rem;
     color: white;
     font-size: 2rem;
     flex-wrap: wrap;
-    padding-left: 3.5rem;
-    padding-right: 3.5rem;
-    min-height: 7rem;
-    max-height:15rem;
-    width: auto;
-    flex-direction: column;
+    padding-left: 4.5rem;
+    padding-right: 4.5rem;
+    width: 100%;
+    flex-direction: row;
+    flex:1;
 }
 
-    .switcher p {
-        width: 50%;
-        /*margin: 0rem 7rem;*/
-        margin-top: 2rem;
-        margin-bottom: 2rem;
-    }
+/*.switcher p  {*/
 
-@media screen and (max-width:700px){
-    .switcher{
-       
+/*margin: 0rem 7rem;*/
+/*margin-top: 2rem;
+        margin-bottom: 2rem;auto
+    }*/
+
+@media screen and (max-width:700px) {
+    .switcher {
+        height: auto;
         flex-wrap: nowrap;
+        flex-direction:column;
+    }
+
+}
+
+
+.half {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    text-align: center;
+    margin: 1rem 0rem;
+}
+
+.switcher p {
+    margin: 0rem 8rem;
+}
+
+@media screen and (max-width:1200px) {
+    .switcher p {
+        margin: 0rem 15rem;
     }
 }
+/*
+    .half p {
+        margin: 0;
+        width:25rem;
+    }
+
+.text-choice {
+    width: 100%;
+    height: inherit
+}*/
+
+
+
 
 .quarter {
     width: 25%;
-    
     height: auto;
     display: flex;
-
     justify-content: center;
     align-items: center;
+    margin: 1rem 1rem;
 }
 
 .switcher button {
@@ -47,5 +80,13 @@
 
     .switcher button:hover {
         transform: scale(1.1);
-        
     }
+/*
+.switcher buttton-locked {
+    background-color: #282626;
+    cursor: default;
+}
+
+.switcher buttton-locked:hover{
+    transform: none;
+}*/

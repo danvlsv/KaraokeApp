@@ -3,20 +3,34 @@
 <Calendar @bind-ChosenDate="ChosenDate"/>
 
 	<div class="switcher">
+		
+
+		
+
 		@if (ChosenDate != DateOnly.MinValue)
 		{
-
+			
+			
+			<p>Выбрана дата: @ChosenDate</p>
+			
+			@* <div class="quarter button-div">
+				@RightButton
+			</div> *@
+		}
 		<div class="quarter button-div">
 			@LeftButton
 		</div>
-
-			<p>Выбрана дата: @ChosenDate</p>
-
-		<div class="quarter button-div">
-			@RightButton
-		</div>
+		@if (ChosenDate != DateOnly.MinValue)
+		{
+			<div class="quarter button-div">
+				@RightButton
+			</div>
 		}
+
 		
+		
+
+
 	</div>
 
 </div>

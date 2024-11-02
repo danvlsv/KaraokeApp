@@ -6,14 +6,12 @@
 	// 	Console.WriteLine(booking.Id + " " + booking.RoomNumber + " " + booking.Date + " " + booking.Time + " " + booking.Name + " " + booking.Phone + " " + booking.Extra + " " + booking.Status);
 	// }
 	int hour = 0;
-	int start = 0;
-	for (int i = 0; i <= 4; i++)
+
+	for (int i = 0; i <= 3; i++)
 	{
 		<div class="hours-row">
-		@if (i==4){
-			start=1;
-		}
-			@for (int j = start; j <= 4; j++)
+		
+			@for (int j = 0; j <= 5; j++)
 			{
 				int hourNum = hour;
 				// TimeOnly time = new TimeOnly(hour, 0);
@@ -45,12 +43,19 @@
 	}
 }
 
-<div class="time-choice">
+<div class="switcher">
+
+	<div class="quarter button-div">
+		@LeftButton
+	</div>
 	@if (ChosenTime != null)
 	{
-
+		@* <div class="half"> *@
 		<p>Выбран промежуток времени с @ChosenTime:00-@(ChosenTime + 1):00</p>
-
+		@* </div> *@
+		<div class="quarter button-div">
+			@RightButton
+		</div>
 
 	}
 
@@ -75,11 +80,10 @@
 	}
 
 
-
-
-
-
-
+	[Parameter]
+	public RenderFragment? LeftButton { get; set; }
+	[Parameter]
+	public RenderFragment? RightButton { get; set; }
 
 
 	//Миша добавилл код ниже
