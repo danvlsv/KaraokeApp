@@ -3,9 +3,12 @@
 @inherits LayoutComponentBase
 @rendermode InteractiveServer
 
+@using BlazorApp.Backend
+@inject Backend.DbManager DbManager
 
 <PageTitle>Караоке</PageTitle>
 <link rel="stylesheet" href="/css/GenericButton.css" />
+<link rel="stylesheet" href="/css/Switcher.css" />
 
 <div class="landing">
 		
@@ -18,23 +21,42 @@
 
 	</div> *@
 
-	<div class="header">
-		<h1>1. Выберите комнату</h1>
-	</div>
+	@{
+		
+		switch (CurStep)
+		{
+			case 1:
+				<div class="header">
+					<h1>1. Выберите комнату</h1>
+				</div>
 
-	<RoomCard/>
+				<RoomCard ChildContent=@NextStep() />
+				break;
+			case 2:
+				<div class="header">
+					<h1>2. Выберите дату</h1>
+				</div>
+
+				<CalendarCard LeftButton=@PreviousStep() RightButton=@NextStep() />
+				break;
+			case 3:
+				<div class="header">
+					<h1>3. Выберите время резервации</h1>
+				</div>
+
+				<TimeChoiceCard LeftButton=@PreviousStep() RightButton=@NextStep() />
+				break;
+		}
 	
-	<div class="header">
-		<h1>2. Выберите дату</h1>
-	</div>
+	}
 	
-	<CalendarCard/>
 
-	<div class="header">
-		<h1>3. Выберите время резервации</h1>
-	</div>
 
-	<TimeChoiceCard/>
+	
+	
+	
+
+	
 
 </div>
 
@@ -47,7 +69,47 @@
 		curCount++;
 	}
 
+	int CurStep = 1;
 
+	RenderFragment NextStep()
+	{
+		return@<button @onclick="()=>CurStep++">Далее</button>;
+	} 
+
+	RenderFragment PreviousStep()
+	{
+		return@<button @onclick="()=>CurStep--">Назад</button>;
+	}
+
+	
+
+	private List<Booking> bookings = null;
+	private List<int> Time = null;
+
+
+
+	protected override async Task OnInitializedAsync()
+	{
+		AddBooking();
+		// DeleteBooking();
+	}
+
+
+	private void AddBooking()
+	{
+		// Реализуйте метод для добавления бронирования, например, открыть модальное окно
+		DbManager.AddNewBooking(1, "30.10.2024", 10, "John Doe", "1234567890", "Дополнительные требования");
+		DbManager.AddNewBooking(2, "30.10.2024", 12, "Михаил Фёдоровых", "1234123422", "Нет");
+		DbManager.AddNewBooking(3, "30.10.2024", 11, "Данил Власов", "1111111111", "Нет");
+		DbManager.AddNewBooking(1, "30.10.2024", 7, "Анна Арланова", "1222222222", "Нет");
+		bookings = DbManager.GetAllBooking(); // Обновите список бронирований
+	}
+
+	private void DeleteBooking()
+	{
+		DbManager.DeleteAllBooking();
+		bookings = DbManager.GetAllBooking(); // Обновите список бронирований
+	}
 
 	
 }

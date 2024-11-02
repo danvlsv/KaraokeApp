@@ -1,13 +1,46 @@
-﻿<Calendar @bind-ChosenDate="ChosenDate"/>
+﻿<div class="calendar-card">
 
-	<div class="date-choice">
+<Calendar @bind-ChosenDate="ChosenDate"/>
+
+	<div class="switcher">
+		
+
+		
+
 		@if (ChosenDate != DateOnly.MinValue)
 		{
+			
+			
 			<p>Выбрана дата: @ChosenDate</p>
+			
+			@* <div class="quarter button-div">
+				@RightButton
+			</div> *@
 		}
+		<div class="quarter button-div">
+			@LeftButton
+		</div>
+		@if (ChosenDate != DateOnly.MinValue)
+		{
+			<div class="quarter button-div">
+				@RightButton
+			</div>
+		}
+
 		
+		
+
+
 	</div>
+
+</div>
 
 @code {
 	public DateOnly ChosenDate { get; set; }
+
+	[Parameter]
+	public RenderFragment? LeftButton { get; set; }
+	[Parameter]
+	public RenderFragment? RightButton { get; set; }
+
 }

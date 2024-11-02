@@ -1,8 +1,15 @@
-﻿.date-choice {
+﻿/*.date-choice {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 5rem;
     color: white;
     font-size: 2rem;
+}*/
+
+.calendar-card {
+    width: 100%;
+    display:flex;
+    align-items:center;
+    flex-direction: column;
 }

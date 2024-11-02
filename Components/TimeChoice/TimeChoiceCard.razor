@@ -1,49 +1,68 @@
-﻿@{
-	int hour = 8;
+﻿@using BlazorApp.Backend
+@inject Backend.DbManager DbManager
+@{
+	// @foreach (var booking in bookings)
+	// {
+	// 	Console.WriteLine(booking.Id + " " + booking.RoomNumber + " " + booking.Date + " " + booking.Time + " " + booking.Name + " " + booking.Phone + " " + booking.Extra + " " + booking.Status);
+	// }
+	int hour = 0;
+
 	for (int i = 0; i <= 3; i++)
 	{
 		<div class="hours-row">
-			@for (int j = 0; j <= 3; j++)
+		
+			@for (int j = 0; j <= 5; j++)
 			{
-				
-				TimeOnly time = new TimeOnly(hour, 0);
-				Console.WriteLine(time);
-				if (availableTimes.Contains(time))
+				int hourNum = hour;
+				// TimeOnly time = new TimeOnly(hour, 0);
+				// Console.WriteLine(hourNum);
+
+				if (Time.Contains(hourNum) == false)
 				{
-					Console.WriteLine("Доступное время");
-					<div class="available-time" 
-						style="background-color:@(time==ChosenTime ? "#4CC160" : "white" )" 
-						@onclick="()=>ChosenTime=time"
-					>
-						<p>@hour:00</p>
+
+					// Console.WriteLine("Доступное время");
+
+					<div class="available-time"
+						 style="background-color:@(hourNum==ChosenTime ? "#4CC160" : "white" )"
+						 @onclick="()=>ChosenTime=hourNum">
+						<p>@hourNum:00</p>
 					</div>
 
 				}
 				else
 				{
 					<div class="unavailable-time">
-						<p>@hour:00</p>
+						<p>@hourNum:00</p>
 					</div>
 
 				}
-				
+
 				hour++;
 			}
 		</div>
 	}
 }
 
-<div class="time-choice">
-	@if (ChosenTime != TimeOnly.MinValue)
+<div class="switcher">
+
+	<div class="quarter button-div">
+		@LeftButton
+	</div>
+	@if (ChosenTime != null)
 	{
-		<p>Выбран промежуток времени с @ChosenTime-@ChosenTime.AddHours(1)</p>
+		@* <div class="half"> *@
+		<p>Выбран промежуток времени с @ChosenTime:00-@(ChosenTime + 1):00</p>
+		@* </div> *@
+		<div class="quarter button-div">
+			@RightButton
+		</div>
+
 	}
 
 </div>
 
 @code {
-
-	TimeOnly ChosenTime { get; set; }
+	int? ChosenTime { get; set; } = null;
 
 	List<TimeOnly> availableTimes = new List<TimeOnly>
 	{
@@ -52,9 +71,53 @@
 		new TimeOnly(18,0),
 	};
 
-	string SetBorder(TimeOnly time)
+
+
+	string SetBorder(int time)
 	{
 		return ChosenTime == time ? "5px solid #BD3838" : "5px solid transparent";
 
 	}
+
+
+	[Parameter]
+	public RenderFragment? LeftButton { get; set; }
+	[Parameter]
+	public RenderFragment? RightButton { get; set; }
+
+
+	//Миша добавилл код ниже
+
+	private List<Booking> bookings = null;
+	private List<int> Time = null;
+
+
+
+	protected override async Task OnInitializedAsync()
+	{
+		// AddBooking();
+		await GetAvailableTimes();
+		// DeleteBooking();
+	}
+
+	private async Task GetAvailableTimes()
+	{
+		Time = DbManager.GetAllBookedTimeOfDay("30.10.2024");
+	}
+
+	// private void AddBooking()
+	// {
+	// 	// Реализуйте метод для добавления бронирования, например, открыть модальное окно
+	// 	DbManager.AddNewBooking(1, "30.10.2024", 10, "John Doe", "1234567890", "Дополнительные требования");
+	// 	DbManager.AddNewBooking(2, "30.10.2024", 12, "Михаил Фёдоровых", "1234123422", "Нет");
+	// 	DbManager.AddNewBooking(3, "30.10.2024", 11, "Данил Власов", "1111111111", "Нет");
+	// 	DbManager.AddNewBooking(1, "30.10.2024", 7, "Анна Арланова", "1222222222", "Нет");
+	// 	bookings = DbManager.GetAllBooking(); // Обновите список бронирований
+	// }
+
+	// private void DeleteBooking()
+	// {
+	// 	DbManager.DeleteAllBooking();
+	// 	bookings = DbManager.GetAllBooking(); // Обновите список бронирований
+	// }
 }
