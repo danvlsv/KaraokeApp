@@ -13,3 +13,10 @@
     align-items:center;
     flex-direction: column;
 }
+
+.info{
+    color: white;
+    margin-top:2rem;
+    margin-bottom:2rem;
+    font-size: 2rem;
+}

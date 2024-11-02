@@ -1,6 +1,7 @@
 using BlazorApp.Components;
 using Microsoft.EntityFrameworkCore;
 using BlazorApp.Backend;
+using BlazorApp;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,7 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 builder.Services.AddScoped<DbManager>();
+builder.Services.AddSingleton<CurrentBooking>();
 
 var app = builder.Build();
 

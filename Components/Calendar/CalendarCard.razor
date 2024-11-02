@@ -1,5 +1,7 @@
 ﻿<div class="calendar-card">
 
+<div class="info">Доступные даты для комнаты № @roomNumber</div>
+
 <Calendar @bind-ChosenDate="ChosenDate"/>
 
 	<div class="switcher">
@@ -36,7 +38,21 @@
 </div>
 
 @code {
+	[Inject]
+	CurrentBooking currentBooking { get; set; }
+
+
 	public DateOnly ChosenDate { get; set; }
+
+	[Parameter]
+	public int roomNumber { get; set; } 
+
+	protected override async Task OnInitializedAsync()
+	{
+
+		roomNumber = currentBooking.RoomNumber;
+		
+	}
 
 	[Parameter]
 	public RenderFragment? LeftButton { get; set; }

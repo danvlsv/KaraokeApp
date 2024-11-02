@@ -5,6 +5,7 @@
 
 @using BlazorApp.Backend
 @inject Backend.DbManager DbManager
+@inject CurrentBooking curBooking;
 
 <PageTitle>Караоке</PageTitle>
 <link rel="stylesheet" href="/css/GenericButton.css" />
@@ -63,11 +64,7 @@
 
 
 @code {
-	private int curCount = 1;
-	private void IncrementCount()
-	{
-		curCount++;
-	}
+	
 
 	int CurStep = 1;
 
@@ -81,12 +78,10 @@
 		return@<button @onclick="()=>CurStep--">Назад</button>;
 	}
 
-	
+
 
 	private List<Booking> bookings = null;
 	private List<int> Time = null;
-
-
 
 	protected override async Task OnInitializedAsync()
 	{
@@ -102,7 +97,14 @@
 		DbManager.AddNewBooking(2, "30.10.2024", 12, "Михаил Фёдоровых", "1234123422", "Нет");
 		DbManager.AddNewBooking(3, "30.10.2024", 11, "Данил Власов", "1111111111", "Нет");
 		DbManager.AddNewBooking(1, "30.10.2024", 7, "Анна Арланова", "1222222222", "Нет");
+		// DbManager.AddNewBooking(3, "05.11.2024", 0, "Данил Власов", "1111111111", "Нет");
+		for (int i=0;i<24;i++)
+		{
+			DbManager.AddNewBooking(3, "05.11.2024", i, "Данил Власов", "1111111111", "Нет");
+		}
+		
 		bookings = DbManager.GetAllBooking(); // Обновите список бронирований
+		Console.Clear();
 	}
 
 	private void DeleteBooking()

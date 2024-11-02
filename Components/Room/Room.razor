@@ -16,16 +16,29 @@
 </div>
 
 @code {
+	[Inject]
+	CurrentBooking currentBooking { get; set; }
+
+
 
 	[Parameter]
-	public int ChosenRoomID { get; set; }
+	public int ChosenRoomID { get; set; } 
 
 	[Parameter]
 	public EventCallback<int> ChosenRoomIDChanged { get; set; }
 
+	protected override async Task OnInitializedAsync()
+	{
+
+		ChosenRoomID = currentBooking.RoomNumber;
+		await ChosenRoomIDChanged.InvokeAsync(ChosenRoomID);
+		Console.WriteLine(currentBooking.RoomNumber);
+	}
+
 	public async Task RoomChoice()
 	{
 		ChosenRoomID = RoomNumber;
+		currentBooking.SetRoomNumber(RoomNumber);
 		await ChosenRoomIDChanged.InvokeAsync(ChosenRoomID);
 
 	}

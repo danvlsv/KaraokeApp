@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.EntityFrameworkCore.Query;
 using System;
 
 namespace BlazorApp.Backend
@@ -65,24 +66,26 @@ namespace BlazorApp.Backend
 			}
 		}
 
-		public List<int> GetAllBookedTimeOfDay(string date)
+		public List<int> GetAllBookedTimeOfDay(string date, int room)
 		{
 			return _context.Reservations
-				.Where(p => p.Date == date)
+				.Where(p => p.Date == date & p.RoomNumber == room)
 				.Select(p => p.Time)
 				.ToList(); // Получаем всё занятое время заданной даты
 		}
 
-		public bool IsDayBooked(string date)
+		public bool IsDayBooked(string date, int room)
 		{
-			var list = GetAllBookedTimeOfDay(date);
-			if (list.Count == 24)
+			var list = GetAllBookedTimeOfDay(date,room);
+			if (list.Count >= 24)
 			{
-				return true;
+
+				return true; // весь день занят
 			}
 			else
 			{
-				return false;
+				
+				return false; // есть свободные слоты
 			}
 		}
 
