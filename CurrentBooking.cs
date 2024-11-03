@@ -1,4 +1,6 @@
-﻿namespace BlazorApp
+﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+
+namespace BlazorApp
 {
     public class CurrentBooking
     {
@@ -18,16 +20,35 @@
             {
                 Date = null;
                 Time = null;
-            }
-            RoomNumber = room;
-            NotifyStateChanged();
+				RoomNumber = room;
+				NotifyStateChanged();
+			}
+            
         }
 
         public void SetDate(string date)
         {
-            Date = date;
+            if (date!=Date)
+            {
+                Time = null;
+				Date = date;
+				NotifyStateChanged();
+			}
+            
+        }
+
+        public void SetTime(int? time)
+        {
+            Time= time;
             NotifyStateChanged();
         }
+
+        public void ResetData()
+        {
+            RoomNumber = 0;
+			Time = null;
+			Date = null;
+		}
 
         private void NotifyStateChanged()
         {

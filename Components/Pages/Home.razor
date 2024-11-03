@@ -78,7 +78,8 @@
 		return@<button @onclick="()=>CurStep--">Назад</button>;
 	}
 
-
+	[Inject]
+	CurrentBooking currentBooking { get; set; }
 
 	private List<Booking> bookings = null;
 	private List<int> Time = null;
@@ -86,6 +87,7 @@
 	protected override async Task OnInitializedAsync()
 	{
 		AddBooking();
+		currentBooking.ResetData();
 		// DeleteBooking();
 	}
 
