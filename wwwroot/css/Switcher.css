@@ -21,16 +21,6 @@
         margin-bottom: 2rem;auto
     }*/
 
-@media screen and (max-width:700px) {
-    .switcher {
-        height: auto;
-        flex-wrap: nowrap;
-        flex-direction:column;
-    }
-
-}
-
-
 .half {
     width: 50%;
     height: 100%;
@@ -40,53 +30,57 @@
 }
 
 .switcher p {
-    margin: 0rem 8rem;
-}
-
-@media screen and (max-width:1200px) {
-    .switcher p {
-        margin: 0rem 15rem;
-    }
-}
-/*
-    .half p {
-        margin: 0;
-        width:25rem;
-    }
-
-.text-choice {
+    margin: 0rem 6rem;
     width: 100%;
-    height: inherit
-}*/
+}
 
 
 
-
-.quarter {
-    width: 25%;
+.buttons {
     height: auto;
-    display: flex;
     justify-content: center;
     align-items: center;
     margin: 1rem 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    width: 60%;
+    flex-direction: row;
 }
+
+
+
 
 .switcher button {
     background-color: #BD3838;
     color: white;
     font-size: 2rem;
     padding: 10px 40px;
+    margin: 1rem 1rem;
 }
 
     .switcher button:hover {
         transform: scale(1.1);
     }
-/*
-.switcher buttton-locked {
-    background-color: #282626;
-    cursor: default;
+
+
+@media screen and (max-width:900px) {
+    .switcher {
+        height: auto;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        padding-left: 3.5rem;
+        padding-right: 3.5rem;
+    }
+
+        .switcher p {
+            margin: 0rem 2rem;
+            width:100%;
+        }
+
+    .buttons {
+        width:80%;
+        
+    }
 }
 
-.switcher buttton-locked:hover{
-    transform: none;
-}*/
+

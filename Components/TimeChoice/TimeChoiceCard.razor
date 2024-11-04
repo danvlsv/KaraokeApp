@@ -9,7 +9,7 @@
 
 	for (int i = 0; i <= 3; i++)
 	{
-		<div class="hours-row">
+		<div class="hours-row @(i==3? "bottom-space" :" " )">
 		
 			@for (int j = 0; j <= 5; j++)
 			{
@@ -44,20 +44,21 @@
 }
 
 <div class="switcher">
-
-	<div class="quarter button-div">
-		@LeftButton
-	</div>
+	
 	@if (ChosenTime != null)
 	{
-		@* <div class="half"> *@
 		<p>Выбран промежуток времени с @ChosenTime:00-@(ChosenTime + 1):00</p>
-		@* </div> *@
-		<div class="quarter button-div">
-			@RightButton
-		</div>
 
 	}
+	<div class="buttons">
+		@LeftButton
+		@if (ChosenTime != null)
+		{
+			@RightButton
+
+		}
+	</div>
+	
 
 </div>
 

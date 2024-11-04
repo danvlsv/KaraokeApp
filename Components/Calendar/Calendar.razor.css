@@ -12,7 +12,7 @@ th {
 .cal {
     background-color: black;
     color: white;
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
 }
 
 .unavailable-date{
@@ -26,4 +26,13 @@ th {
     background-color:white;
     color: black;
     cursor: pointer;
+}
+
+@media screen and (max-width:900px) {
+    td, th {
+        border: 1px solid #dddddd;
+        padding: .8rem 0.3rem;
+        font-size: .85rem;
+    }
+
 }

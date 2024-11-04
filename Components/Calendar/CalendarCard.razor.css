@@ -16,7 +16,12 @@
 
 .info{
     color: white;
-    margin-top:2rem;
     margin-bottom:2rem;
     font-size: 2rem;
+}
+
+@media screen and (max-width:900px) {
+    .info{
+        padding: 0 2rem;
+    }
 }

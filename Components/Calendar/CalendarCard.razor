@@ -19,18 +19,15 @@
 				@RightButton
 			</div> *@
 		}
-		<div class="quarter button-div">
+		<div class="buttons">
 			@LeftButton
+			@if (ChosenDate != DateOnly.MinValue)
+			{
+				
+					@RightButton
+				
+			}
 		</div>
-		@if (ChosenDate != DateOnly.MinValue)
-		{
-			<div class="quarter button-div">
-				@RightButton
-			</div>
-		}
-
-		
-		
 
 
 	</div>

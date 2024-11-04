@@ -1,0 +1,51 @@
+﻿
+<div class="customer-data">
+	<div class="data">
+		<p>Комната №@roomNumber</p>
+		<p>Дата: @date</p>
+		<p>Время: @hour:00-@(hour+1):00</p>
+	</div>
+</div>
+
+<div class="switcher">
+
+
+
+
+	
+	<div class="buttons">
+		@LeftButton
+		@* @if (ChosenDate != DateOnly.MinValue)
+		{
+
+			@RightButton
+
+		} *@
+	</div>
+
+
+</div>
+
+@code {
+
+	[Parameter]
+	public RenderFragment? LeftButton { get; set; }
+	[Parameter]
+	public RenderFragment? RightButton { get; set; }
+
+	[Inject]
+	CurrentBooking currentBooking { get; set; }
+
+	int roomNumber;
+	string date;
+	int? hour;
+
+	protected override async Task OnInitializedAsync()
+	{
+
+		roomNumber = currentBooking.RoomNumber;
+		date = currentBooking.Date;
+		hour = currentBooking.Time;
+		
+	}
+}

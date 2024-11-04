@@ -1,6 +1,7 @@
 ﻿.hours-row {
     display: flex;
     flex-direction: row;
+    margin-bottom: 1rem;
 }
 
     .hours-row div {
@@ -8,14 +9,18 @@
         width: 8rem;
         height: 3.8rem;
         font-size: 1.4rem;
-        border-radius: 20px;
-        margin-right: 0.8rem;
-        margin-bottom: 1rem;
+        border-radius: 15px;
+        margin-right: 0.5rem;
+        margin-left: 0.5rem;
     }
 
         .hours-row div p {
             margin:0;
         }
+
+.bottom-space {
+    margin-bottom:3rem;
+}
 
 .available-time {
     cursor: pointer;
@@ -28,12 +33,32 @@
     color: white;
 }
 
-.time-choice {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 5rem;
-    color: white;
-    font-size: 2rem;
+@media screen and (max-width:850px) {
+    .hours-row div {
+       
+        width: 6.6rem;
+       
+        
+    }
 }
+
+@media screen and (max-width:750px) {
+    .hours-row div {
+        width: 5.5rem;
+        height: 3.5rem;
+        margin-right: 0.3rem;
+        margin-left: 0.3rem;
+    }
+}
+
+@media screen and (max-width:600px) {
+    .hours-row div {
+        width: 5.1rem;
+        height: 3.5rem;
+        margin-right: 0.3rem;
+        margin-left: 0.3rem;
+    }
+}
+
+
 

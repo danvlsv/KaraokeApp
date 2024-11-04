@@ -47,6 +47,13 @@
 
 				<TimeChoiceCard LeftButton=@PreviousStep() RightButton=@NextStep() />
 				break;
+			case 4:
+				<div class="header">
+					<h1>4. Проверьте данные резервации</h1>
+				</div>
+
+				<CustomerData LeftButton=@PreviousStep() RightButton=@NextStep() />
+				break;
 		}
 	
 	}
@@ -86,7 +93,7 @@
 
 	protected override async Task OnInitializedAsync()
 	{
-		AddBooking();
+		// AddBooking();
 		currentBooking.ResetData();
 		// DeleteBooking();
 	}
