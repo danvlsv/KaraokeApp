@@ -1,26 +1,38 @@
-﻿
+﻿@using System.Text.RegularExpressions;
+
+
 <div class="customer-data">
 	<div class="data">
 		<p>Комната №@roomNumber</p>
 		<p>Дата: @date</p>
 		<p>Время: @hour:00-@(hour+1):00</p>
 	</div>
+	<div class="user-input">
+		<p><strong>Введите свои контактные данные</strong></p>
+		
+		<p>Имя</p>
+		<input @bind-value="@name" @bind-value:event="oninput" @onkeyup="@TempSave" />
+
+		<p>Телефон</p>
+		<div class="phone">
+
+		<p>+7</p><input @bind-value="@phone" @bind-value:event="oninput" maxlength="13" @onkeyup="@PhoneInput" type="tel" placeholder="XXX XXX XX XX" />
+		
+		</div>
+		<p>Примечания</p>
+		<input @bind-value="@extra" @bind-value:event="oninput" @onkeyup="@TempSave" />
+	</div>
 </div>
 
 <div class="switcher">
 
-
-
-
 	
 	<div class="buttons">
-		@LeftButton
-		@* @if (ChosenDate != DateOnly.MinValue)
-		{
+		@LeftButton 
+		
+		<button class=@(CheckData()? "":"blocked-button")>Забронироать</button>
 
-			@RightButton
-
-		} *@
+		
 	</div>
 
 
@@ -40,12 +52,73 @@
 	string date;
 	int? hour;
 
+	string name="";
+
+	string tempPhone = "";
+	string phone="";
+	string extra="";
+
 	protected override async Task OnInitializedAsync()
 	{
 
 		roomNumber = currentBooking.RoomNumber;
 		date = currentBooking.Date;
 		hour = currentBooking.Time;
-		
+		name = currentBooking.Name;
+		phone = currentBooking.Phone;
+		extra = currentBooking.Extra;
+
+	}
+
+	private void TempSave()
+	{
+		currentBooking.SetName(name);
+		currentBooking.SetPhone(phone);
+		Console.WriteLine($"\n\n{name}\n{phone}\n{extra}");
+		currentBooking.SetExtra(extra);
+	}
+
+	private bool CheckData()
+	{
+		if (name!=null && phone!= null){
+			Console.WriteLine((name.Length > 0) && (Regex.Replace(phone, @"\s+", "").Length == 10));
+			return ((name.Length > 0) && (Regex.Replace(phone, @"\s+", "").Length == 10));
+		}
+		return false;
+	}
+
+	private void PhoneInput()
+	{
+		if (phone.Length>tempPhone.Length)
+		{
+
+
+			Console.WriteLine(phone.Length);
+			switch (phone.Length)
+			{
+				case 3:
+					phone = phone.Insert(3, " ");
+					// phone = Regex.Replace(phone,@"\s","");
+					return;
+				case 7:
+					phone = Regex.Replace(phone, @"\s+", "");
+					phone = phone.Insert(3, " ");
+					phone = phone.Insert(7, " ");
+					return;
+
+				case 12:
+				
+					phone = Regex.Replace(phone, @"\s+", "");
+					phone = phone.Insert(3, " ");
+					phone = phone.Insert(7, " ");
+					phone = phone.Insert(10, " ");
+					TempSave();
+					return;
+				
+					
+			}
+			// phone = Regex.Replace(phone, @"\s", "");
+		}
+		tempPhone = phone;
 	}
 }

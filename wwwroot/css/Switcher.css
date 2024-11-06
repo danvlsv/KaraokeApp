@@ -3,9 +3,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 6rem;
+    height: 8rem;
     color: white;
-    font-size: 2rem;
+    font-size: 3rem;
     flex-wrap: wrap;
     padding-left: 4.5rem;
     padding-right: 4.5rem;
@@ -14,12 +14,6 @@
     flex:1;
 }
 
-/*.switcher p  {*/
-
-/*margin: 0rem 7rem;*/
-/*margin-top: 2rem;
-        margin-bottom: 2rem;auto
-    }*/
 
 .half {
     width: 50%;
@@ -40,7 +34,7 @@
     height: auto;
     justify-content: center;
     align-items: center;
-    margin: 1rem 1rem;
+    margin: 2rem 2rem;
     display: flex;
     flex-wrap: wrap;
     width: 60%;
@@ -53,7 +47,7 @@
 .switcher button {
     background-color: #BD3838;
     color: white;
-    font-size: 2rem;
+    font-size: 3rem;
     padding: 10px 40px;
     margin: 1rem 1rem;
 }

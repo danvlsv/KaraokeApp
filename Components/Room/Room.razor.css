@@ -1,6 +1,6 @@
 ﻿.room {
-    width: 27rem;
-    height: 20rem;
+    width: 45rem;
+    height: 30rem;
     border-radius: 20px;
     padding: 0px;
    
@@ -28,7 +28,7 @@
 }
 
 .room-info {
-    font-size: 0.8rem;
+    font-size: 1.2rem;
     width: 40%;
     height: 100%;
     color: white;

@@ -1,6 +1,5 @@
-html {
+:root {
     font-size: 62.5%;
-    
 }
 
 body {
@@ -9,13 +8,14 @@ body {
 
 
 html {
+    
     padding: 0;
     margin-top: 0px;
     background: linear-gradient(45deg, #000000, #D4B8AD);
     background-repeat: no-repeat;
     background-attachment: fixed;
     font-family: Bahnschrift;
-    font-size: 1rem
+    /*font-size: 1rem*/
 }
 
 
