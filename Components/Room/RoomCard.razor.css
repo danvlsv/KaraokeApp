@@ -9,10 +9,11 @@
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
-    margin-bottom:1rem;
+    margin-bottom:4rem;
+    margin-top:2rem;
 }
 
-.room-choice {
+/*.room-choice {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -20,3 +21,4 @@
     color: white;
     font-size: 2rem;
 }
+*/

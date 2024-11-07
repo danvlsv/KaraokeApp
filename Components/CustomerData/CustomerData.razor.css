@@ -1,0 +1,110 @@
+﻿
+.customer-data {
+    box-sizing: border-box;
+    display: flex;
+    width: 100%;
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
+    /*background-color: white;*/
+    height: auto;
+    border-radius: 10px;
+    justify-content: center;
+    flex-direction: row;
+}
+
+
+
+.data {
+    text-align: left;
+    background-color: #bd3838;
+    padding: 3rem;
+    color: white;
+    font-size: 2.6rem;
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.user-input {
+    width: 75%;
+    text-align: left;
+    padding: 2rem 5rem;
+    display: flex;
+    flex-direction: column;
+    color: black;
+    background-color: white;
+    
+}
+
+    .user-input input {
+        margin-bottom: 1rem;
+        width: 27rem;
+        font-family: Bahnschrift;
+        font-size: 2rem;
+        padding-left: 0.7rem;
+        height: 3rem;
+    }
+
+    .user-input p {
+        font-size: 2.2rem;
+    }
+
+.phone {
+    width: 27.9rem;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+    .phone p {
+        width: 3rem;
+        margin: 0;
+        text-align: center;
+        margin-right: 0.5rem;
+        font-weight: bold;
+        font-size: 2rem;
+    }
+
+    .phone input {
+        width: 24.5rem;
+        
+        margin:0;
+        font-weight:bold;
+        font-size:2rem;
+    }
+
+
+@media screen and (max-width:900px) {
+    .customer-data {
+        flex-wrap: wrap;
+        
+    }
+
+    .data {
+        width: 100%;
+        text-align: center;
+        padding: 1rem 3rem;
+    }
+
+    .user-input {
+        
+        width:100%;
+    }
+
+       
+}
+
+@media screen and (max-width:580px) {
+    /*.user-input input {
+        width: 80%;
+    }*/
+
+    .user-input {
+        
+        padding: 2rem 1.3rem;
+       
+    }
+}
+
+

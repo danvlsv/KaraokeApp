@@ -9,7 +9,7 @@
 
 	for (int i = 0; i <= 3; i++)
 	{
-		<div class="hours-row">
+		<div class="hours-row @(i==3? "bottom-space" :" " )">
 		
 			@for (int j = 0; j <= 5; j++)
 			{
@@ -24,7 +24,7 @@
 
 					<div class="available-time"
 						 style="background-color:@(hourNum==ChosenTime ? "#4CC160" : "white" )"
-						 @onclick="()=>ChosenTime=hourNum">
+						 @onclick="()=>ChooseTime(hourNum)">
 						<p>@hourNum:00</p>
 					</div>
 
@@ -44,33 +44,50 @@
 }
 
 <div class="switcher">
-
-	<div class="quarter button-div">
-		@LeftButton
-	</div>
+	
 	@if (ChosenTime != null)
 	{
-		@* <div class="half"> *@
 		<p>Выбран промежуток времени с @ChosenTime:00-@(ChosenTime + 1):00</p>
-		@* </div> *@
-		<div class="quarter button-div">
-			@RightButton
-		</div>
 
 	}
+	<div class="buttons">
+		@LeftButton
+		@if (ChosenTime != null)
+		{
+			@RightButton
+
+		}
+	</div>
+	
 
 </div>
 
 @code {
-	int? ChosenTime { get; set; } = null;
 
-	List<TimeOnly> availableTimes = new List<TimeOnly>
+	[Inject]
+	CurrentBooking currentBooking { get; set; }
+
+	protected override async Task OnInitializedAsync()
 	{
-		new TimeOnly(10,0),
-		new TimeOnly(12,0),
-		new TimeOnly(18,0),
-	};
+		ChosenDate = currentBooking.Date;
+		ChosenRoom = currentBooking.RoomNumber;
+		if (currentBooking.Time != null)
+		{
+			ChooseTime(currentBooking.Time);
 
+		}
+
+		// AddBooking();
+		await GetAvailableTimes();
+		// DeleteBooking();
+	}
+
+
+	string ChosenDate { get; set; }
+	int ChosenRoom { get; set; }
+
+
+	int? ChosenTime { get; set; } = null;
 
 
 	string SetBorder(int time)
@@ -92,17 +109,16 @@
 	private List<int> Time = null;
 
 
-
-	protected override async Task OnInitializedAsync()
+	private void ChooseTime(int? hour)
 	{
-		// AddBooking();
-		await GetAvailableTimes();
-		// DeleteBooking();
+		ChosenTime = hour;
+		currentBooking.SetTime(hour);
 	}
+
 
 	private async Task GetAvailableTimes()
 	{
-		Time = DbManager.GetAllBookedTimeOfDay("30.10.2024");
+		Time = DbManager.GetAllBookedTimeOfDay(ChosenDate,ChosenRoom);
 	}
 
 	// private void AddBooking()

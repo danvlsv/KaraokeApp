@@ -1,5 +1,7 @@
 ﻿<div class="calendar-card">
 
+<div class="info">Доступные даты для комнаты № @roomNumber</div>
+
 <Calendar @bind-ChosenDate="ChosenDate"/>
 
 	<div class="switcher">
@@ -17,18 +19,15 @@
 				@RightButton
 			</div> *@
 		}
-		<div class="quarter button-div">
+		<div class="buttons">
 			@LeftButton
+			@if (ChosenDate != DateOnly.MinValue)
+			{
+				
+					@RightButton
+				
+			}
 		</div>
-		@if (ChosenDate != DateOnly.MinValue)
-		{
-			<div class="quarter button-div">
-				@RightButton
-			</div>
-		}
-
-		
-		
 
 
 	</div>
@@ -36,7 +35,21 @@
 </div>
 
 @code {
+	[Inject]
+	CurrentBooking currentBooking { get; set; }
+
+
 	public DateOnly ChosenDate { get; set; }
+
+	[Parameter]
+	public int roomNumber { get; set; } 
+
+	protected override async Task OnInitializedAsync()
+	{
+
+		roomNumber = currentBooking.RoomNumber;
+		
+	}
 
 	[Parameter]
 	public RenderFragment? LeftButton { get; set; }

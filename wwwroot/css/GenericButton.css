@@ -2,7 +2,7 @@
     padding: 7px 15px;
     cursor: pointer;
     font-family: Bahnschrift;
-    font-size: 1.4rem;
+    font-size: 2.3rem;
     background-color: white;
     border: 0px;
     border-radius: 4px;
@@ -13,3 +13,10 @@
         transform: scale(1.1);
         box-shadow: 0px 0px 5px #e7eded;
     }
+
+.blocked-button {
+    transition: none;
+    pointer-events: none;
+    background-color: #282626 !important;
+}
+

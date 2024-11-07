@@ -1,18 +1,19 @@
 ﻿td, th {
     border: 1px solid #dddddd;
-    padding: 1rem 0.5rem 1rem 0.5rem;
+    padding: 2rem 1rem 2rem 1rem;
+    font-size: 1.7rem;
 }
 
 th {
     background-color: #BD3838;
-    width:3rem;
+    width:6rem;
     
 }
 
 .cal {
     background-color: black;
     color: white;
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
 }
 
 .unavailable-date{
@@ -26,4 +27,19 @@ th {
     background-color:white;
     color: black;
     cursor: pointer;
+}
+
+@media screen and (max-width:750px) {
+    td, th {
+        padding: 1.3rem 0.6rem;
+        font-size: 1.7rem;
+    }
+
+}
+
+@media screen and (max-width:670px) {
+    td, th {
+        padding: 1.3rem 0.4rem;
+        font-size: 1.2rem;
+    }
 }
