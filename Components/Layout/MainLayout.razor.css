@@ -10,6 +10,9 @@
     padding-top:0.6rem;
     width:100%;
 }
+    .navbar a {
+        text-decoration: none;
+    }
 
     .navbar ul {
         list-style-type: none;
@@ -22,6 +25,7 @@
         font-family: Jomhuria;
         font-size: 7rem;
         padding-right: 2rem;
+        
     }
 
     .navbar li {

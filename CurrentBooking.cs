@@ -12,6 +12,8 @@ namespace BlazorApp
         public string Phone { get; private set; } = "";// Телефон
         public string Extra { get; private set; } // Дополнительная информация
 
+        public bool Complete { get; set; } = false;
+
         public event Action OnChange;
 
         public void SetRoomNumber(int room)

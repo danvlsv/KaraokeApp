@@ -99,7 +99,7 @@
 	{
 		Console.Clear();
 		DateOnly today = DateOnly.FromDateTime(DateTime.Now);
-		int diff = ((int)today.DayOfWeek + 5) % 6 + 1;
+		int diff = ((int)today.DayOfWeek + 5) % 6;
 		@* Console.WriteLine(diff); *@
 		@* int diff = DayOfWeek.Monday - today.DayOfWeek; *@
 		@* Console.WriteLine(today.AddDays(diff).DayOfWeek);

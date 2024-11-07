@@ -1,5 +1,6 @@
 ﻿@using System.Text.RegularExpressions;
-
+@inject NavigationManager NavigationManager
+@inject Backend.DbManager DbManager
 
 <div class="customer-data">
 	<div class="data">
@@ -30,7 +31,11 @@
 	<div class="buttons">
 		@LeftButton 
 		
-		<button class=@(CheckData()? "":"blocked-button")>Забронироать</button>
+		<button @onclick="()=>ConfirmBooking()"
+			class=@(CheckData()? "":"blocked-button")
+		>
+		Забронироать
+		</button>
 
 		
 	</div>
@@ -85,6 +90,25 @@
 			return ((name.Length > 0) && (Regex.Replace(phone, @"\s+", "").Length == 10));
 		}
 		return false;
+	}
+
+	private void ConfirmBooking()
+	{
+		if (CheckData())
+		{
+			DbManager.AddNewBooking(currentBooking.RoomNumber,
+				currentBooking.Date,
+				(int)currentBooking.Time,
+				currentBooking.Name,
+				"+7" + currentBooking.Phone,
+				string.IsNullOrWhiteSpace(currentBooking.Extra) ? "Нет" : currentBooking.Extra);
+
+			currentBooking.Complete = true;
+
+			NavigationManager.NavigateTo("/");
+		}
+
+			
 	}
 
 	private void PhoneInput()

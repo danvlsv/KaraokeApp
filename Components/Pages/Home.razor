@@ -1,118 +1,42 @@
-﻿
-@page "/"
-@inherits LayoutComponentBase
-@rendermode InteractiveServer
-
-@using BlazorApp.Backend
-@inject Backend.DbManager DbManager
-@inject CurrentBooking curBooking;
+﻿@page "/"
 
 <PageTitle>Discotheque</PageTitle>
-<link rel="stylesheet" href="/css/GenericButton.css" />
-<link rel="stylesheet" href="/css/Switcher.css" />
-
-<div class="landing">
-		
-
-	@{
-		
-		switch (CurStep)
-		{
-			case 1:
-				<div class="header">
-					<h1>1. Выберите комнату</h1>
-				</div>
-
-				<RoomCard ChildContent=@NextStep() />
-				break;
-			case 2:
-				<div class="header">
-					<h1>2. Выберите дату</h1>
-				</div>
-
-				<CalendarCard LeftButton=@PreviousStep() RightButton=@NextStep() />
-				break;
-			case 3:
-				<div class="header">
-					<h1>3. Выберите время резервации</h1>
-				</div>
-
-				<TimeChoiceCard LeftButton=@PreviousStep() RightButton=@NextStep() />
-				break;
-			case 4:
-				<div class="header">
-					<h1>4. Проверьте данные резервации</h1>
-				</div>
-
-				<CustomerData LeftButton=@PreviousStep() RightButton=@NextStep() />
-				break;
-		}
-	
-	}
-	
 
 
-	
-	
-	
+@* <link rel="stylesheet" href="/css/GenericButton.css" />
+<link rel="stylesheet" href="/css/Switcher.css" /> *@
+@if (bookingCompleted)
+{
+	<div class="confirmation">
+		<p>Мы сохранили вашу бронь на @date 🥳</p>
+	</div>
+}
 
-	
+<div class="welcome">
+	<h1>
+		 Забронируйте комнату за несколько кликов
+	</h1>
+	<a href="/newReservation">
 
+	<button >Начать</button>
+	</a>
 </div>
 
-
-
 @code {
-	
 
-	int CurStep = 1;
-
-	RenderFragment NextStep()
-	{
-		return@<button @onclick="()=>CurStep++">Далее</button>;
-	} 
-
-	RenderFragment PreviousStep()
-	{
-		return@<button @onclick="()=>CurStep--">Назад</button>;
-	}
+	public bool bookingCompleted { get; set; } = false;
 
 	[Inject]
 	CurrentBooking currentBooking { get; set; }
 
-	private List<Booking> bookings = null;
-	private List<int> Time = null;
+	string date = ""; 
 
 	protected override async Task OnInitializedAsync()
 	{
-		// AddBooking();
-		currentBooking.ResetData();
-		// DeleteBooking();
-	}
-
-
-	private void AddBooking()
-	{
-		// Реализуйте метод для добавления бронирования, например, открыть модальное окно
-		DbManager.AddNewBooking(1, "30.10.2024", 10, "John Doe", "1234567890", "Дополнительные требования");
-		DbManager.AddNewBooking(2, "30.10.2024", 12, "Михаил Фёдоровых", "1234123422", "Нет");
-		DbManager.AddNewBooking(3, "30.10.2024", 11, "Данил Власов", "1111111111", "Нет");
-		DbManager.AddNewBooking(1, "30.10.2024", 7, "Анна Арланова", "1222222222", "Нет");
-		// DbManager.AddNewBooking(3, "05.11.2024", 0, "Данил Власов", "1111111111", "Нет");
-		for (int i=0;i<24;i++)
-		{
-			DbManager.AddNewBooking(3, "05.11.2024", i, "Данил Власов", "1111111111", "Нет");
+		bookingCompleted = currentBooking.Complete;
+		if (bookingCompleted){
+			date = currentBooking.Date;
+			currentBooking.ResetData();
 		}
-		
-		bookings = DbManager.GetAllBooking(); // Обновите список бронирований
-		Console.Clear();
 	}
-
-	private void DeleteBooking()
-	{
-		DbManager.DeleteAllBooking();
-		bookings = DbManager.GetAllBooking(); // Обновите список бронирований
-	}
-
-	
 }
