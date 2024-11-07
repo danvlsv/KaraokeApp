@@ -43,7 +43,7 @@ namespace BlazorApp.Backend
 
 		public void DeleteBooking(int ID)
 		{
-			var book = _context.Reservations.ElementAtOrDefault(ID); // Получаем бронь по индексу
+			var book = _context.Reservations.FirstOrDefault(booking => booking.Id == ID);  // Получаем бронь по индексу
 			if (book != null) // Проверяем, существует ли продукт
 			{
 				_context.Reservations.Remove(book); // Удаляем бронь
@@ -58,7 +58,7 @@ namespace BlazorApp.Backend
 
 		public void ApproveBooking(int ID)
 		{
-			var book = _context.Reservations.ElementAtOrDefault(ID); // Получаем бронь по индексу
+			var book = _context.Reservations.FirstOrDefault(booking => booking.Id == ID); // Получаем бронь по индексу
 			if (book != null) // Проверяем, существует ли бронь
 			{
 				book.Status = true; // Обновляем статус брони

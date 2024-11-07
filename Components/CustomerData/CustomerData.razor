@@ -100,7 +100,7 @@
 				currentBooking.Date,
 				(int)currentBooking.Time,
 				currentBooking.Name,
-				"+7" + currentBooking.Phone,
+				"+7 " + currentBooking.Phone,
 				string.IsNullOrWhiteSpace(currentBooking.Extra) ? "Нет" : currentBooking.Extra);
 
 			currentBooking.Complete = true;
@@ -108,7 +108,7 @@
 			NavigationManager.NavigateTo("/");
 		}
 
-			
+
 	}
 
 	private void PhoneInput()
@@ -118,31 +118,32 @@
 
 
 			Console.WriteLine(phone.Length);
-			switch (phone.Length)
+			switch (Regex.Replace(phone, @"\s+", "").Length)
 			{
-				case 3:
-					phone = phone.Insert(3, " ");
-					// phone = Regex.Replace(phone,@"\s","");
-					return;
-				case 7:
-					phone = Regex.Replace(phone, @"\s+", "");
-					phone = phone.Insert(3, " ");
-					phone = phone.Insert(7, " ");
-					return;
+				// case 3:
+				// 	phone = phone.Insert(3, " ");
+				// 	// phone = Regex.Replace(phone,@"\s","");
+				// 	return;
+				// case 7:
+				// 	phone = Regex.Replace(phone, @"\s+", "");
+				// 	phone = phone.Insert(3, " ");
+				// 	phone = phone.Insert(7, " ");
+				// 	return;
 
 				case 12:
-				
+
 					phone = Regex.Replace(phone, @"\s+", "");
 					phone = phone.Insert(3, " ");
 					phone = phone.Insert(7, " ");
 					phone = phone.Insert(10, " ");
 					TempSave();
 					return;
-				
-					
+
+
 			}
 			// phone = Regex.Replace(phone, @"\s", "");
 		}
 		tempPhone = phone;
+		TempSave();
 	}
 }

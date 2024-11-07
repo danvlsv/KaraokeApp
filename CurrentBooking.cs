@@ -53,6 +53,7 @@ namespace BlazorApp
             Name = null;
             Phone = null;
             Extra = null;
+            Complete = false;
 		}
 
         private void NotifyStateChanged()

@@ -10,7 +10,7 @@
 
 <div class="navbar">
     <ul>
-        <a href="/">
+        <a @onclick="()=>GoHome()"href="/">
         <li  class="navbar-logo">Discotheque</li>
         </a>
         @* <li><a href="/">Главная</a></li>
@@ -28,3 +28,14 @@
     <a href="" class="reload">Reload</a>
     <a class="dismiss">🗙</a>
 </div>
+
+
+@code {
+    [Inject]
+    CurrentBooking currentBooking { get; set; }
+
+    private void GoHome()
+    {
+        currentBooking.ResetData();
+    }
+}

@@ -114,7 +114,6 @@
 	{
 
 		ChosenDate = DateOnly.Parse(date);
-
 		currentBooking.SetDate(date);
 		Console.WriteLine($"{date} pressed");
 		await ChosenDateChanged.InvokeAsync(ChosenDate);

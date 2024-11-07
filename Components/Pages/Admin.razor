@@ -1,0 +1,92 @@
+﻿@using BlazorApp.Backend;
+@inject Backend.DbManager DbManager
+
+@rendermode InteractiveServer
+
+@page "/admin"
+
+<div class="admin">
+	@if (length > 0)
+	{
+		<table>
+			<tr>
+				<th>ID</th>
+				<th>Номер комнаты</th>
+				<th>Дата</th>
+				<th class="extended">Время</th>
+				<th class="extended">Имя</th>
+				<th class="extended">Телефон</th>
+				<th class="extended">Примечания</th>
+				<th>Статус</th>
+			</tr>
+
+			@foreach (Booking entry in bookings)
+			{
+				int id = entry.Id;
+				<tr>
+					<td class="grey">@entry.Id</td>
+					<td>@entry.RoomNumber</td>
+					<td class="grey">@entry.Date</td>
+					<td>@entry.Time:00 - @(entry.Time + 1):00</td>
+					<td>@entry.Name</td>
+					<td class="grey">@entry.Phone</td>
+					<td>@entry.Extra</td>
+					@if (entry.Status == true)
+					{
+						<td class="approved">Одобрена</td>
+					}
+					else
+					{
+					
+						Console.WriteLine(id);
+						<td @onclick="()=>ApproveBooking(id)" class="approve">Одобрить</td>
+					}
+					<td class="delete">
+						<button @onclick="()=>DeleteBooking(id)">Удалить</button>
+						</td>
+				</tr>
+			}
+		</table>
+	}
+	else
+	{
+		<div>
+			<p>База данных пуста</p>
+		</div>
+	}
+
+
+	<div class="table-controls">
+		<button @onclick="()=>bookings = DbManager.GetAllBooking()">Обновить</button>
+	</div>
+
+</div>
+
+
+@code {
+	List<Booking> bookings;
+	int length = 0;
+
+	public void ApproveBooking(int id)
+	{
+		Console.WriteLine(id);
+		DbManager.ApproveBooking(id);
+		bookings = DbManager.GetAllBooking();
+	}
+
+	public void DeleteBooking(int id)
+	{
+		DbManager.DeleteBooking(id);
+		bookings = DbManager.GetAllBooking();
+		StateHasChanged();
+	}
+
+	protected override async Task OnInitializedAsync()
+	{
+		bookings = DbManager.GetAllBooking();
+		if (bookings != null)
+		{
+			length = bookings.Count;
+		}
+	}
+}

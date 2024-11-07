@@ -1,0 +1,72 @@
+﻿.admin {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    box-sizing: border-box;
+    padding:3rem;
+    flex-direction:column;
+    
+}
+
+table {
+    border-spacing: 0;
+    width:100%
+}
+
+td, th {
+    width: 8rem;
+    border: 1px solid #282626;
+    padding: 2rem 1rem 2rem 1rem;
+    font-size: 1.7rem;
+    text-align: center;
+}
+
+.extended {
+    width:15rem;
+}
+
+th {
+    background-color: #282626;
+    color: white;
+    border: 1px solid #dddddd;
+}
+
+td {
+    background-color:white;
+}
+
+.grey{
+    background-color:#d7d7d7;
+}
+
+.approve {
+    background-color: red;
+    color: white;
+    cursor: pointer;
+}
+
+.approved {
+    background-color: #4CC160;
+    color:white;
+}
+
+.delete {
+    background-color:#00000000;
+    width:8rem;
+    padding:0rem 0.5rem;
+    border: none;
+}
+
+    .delete button {
+        background-color: #BD3838;
+        color:white;
+    }
+
+.table-controls {
+    align-items: center;
+    justify-content: start;
+    display: flex;
+    box-sizing: border-box;
+    margin-top:3rem;
+    width:100%;
+}
