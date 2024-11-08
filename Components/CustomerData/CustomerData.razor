@@ -6,19 +6,19 @@
 	<div class="data">
 		<p>Комната №@roomNumber</p>
 		<p>Дата: @date</p>
-		<p>Время: @hour:00-@(hour+1):00</p>
+		<p>Время: @hour:00-@(hour + 1):00</p>
 	</div>
 	<div class="user-input">
 		<p><strong>Введите свои контактные данные</strong></p>
-		
+
 		<p>Имя</p>
 		<input @bind-value="@name" @bind-value:event="oninput" @onkeyup="@TempSave" />
 
 		<p>Телефон</p>
 		<div class="phone">
 
-		<p>+7</p><input @bind-value="@phone" @bind-value:event="oninput" maxlength="13" @onkeyup="@PhoneInput" type="tel" placeholder="XXX XXX XX XX" />
-		
+			<p>+7</p><input @bind-value="@phone" @bind-value:event="oninput" maxlength="13" @onkeyup="@PhoneInput" type="tel" placeholder="XXX XXX XX XX" />
+
 		</div>
 		<p>Примечания</p>
 		<input @bind-value="@extra" @bind-value:event="oninput" @onkeyup="@TempSave" />
@@ -27,17 +27,16 @@
 
 <div class="switcher">
 
-	
+
 	<div class="buttons">
-		@LeftButton 
-		
+		@LeftButton
+
 		<button @onclick="()=>ConfirmBooking()"
-			class=@(CheckData()? "":"blocked-button")
-		>
-		Забронироать
+				class=@(CheckData()? "":"blocked-button")>
+			Забронироать
 		</button>
 
-		
+
 	</div>
 
 
@@ -57,11 +56,11 @@
 	string date;
 	int? hour;
 
-	string name="";
+	string name = "";
 
 	string tempPhone = "";
-	string phone="";
-	string extra="";
+	string phone = "";
+	string extra = "";
 
 	protected override async Task OnInitializedAsync()
 	{
@@ -85,7 +84,8 @@
 
 	private bool CheckData()
 	{
-		if (name!=null && phone!= null){
+		if (name != null && phone != null)
+		{
 			Console.WriteLine((name.Length > 0) && (Regex.Replace(phone, @"\s+", "").Length == 10));
 			return ((name.Length > 0) && (Regex.Replace(phone, @"\s+", "").Length == 10));
 		}
@@ -113,11 +113,11 @@
 
 	private void PhoneInput()
 	{
-		if (phone.Length>tempPhone.Length)
+
+
+		if (phone != null)
 		{
 
-
-			Console.WriteLine(phone.Length);
 			switch (Regex.Replace(phone, @"\s+", "").Length)
 			{
 				// case 3:
@@ -142,8 +142,10 @@
 
 			}
 			// phone = Regex.Replace(phone, @"\s", "");
+
+			// tempPhone = phone;
+			TempSave();
+
 		}
-		tempPhone = phone;
-		TempSave();
 	}
 }
