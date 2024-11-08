@@ -47,18 +47,20 @@
 				</tr>
 			}
 		</table>
+
+		<div class="table-controls">
+			<button @onclick="()=>bookings = DbManager.GetAllBooking()">Обновить</button>
+		</div>
 	}
 	else
 	{
-		<div>
+		<div class="empty">
 			<p>База данных пуста</p>
 		</div>
 	}
 
 
-	<div class="table-controls">
-		<button @onclick="()=>bookings = DbManager.GetAllBooking()">Обновить</button>
-	</div>
+	
 
 </div>
 
@@ -78,6 +80,7 @@
 	{
 		DbManager.DeleteBooking(id);
 		bookings = DbManager.GetAllBooking();
+		length = bookings.Count;
 		StateHasChanged();
 	}
 

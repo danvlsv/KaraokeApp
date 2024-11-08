@@ -70,3 +70,8 @@ td {
     margin-top:3rem;
     width:100%;
 }
+
+.empty {
+    font-size:4rem;
+    color:white;
+}
