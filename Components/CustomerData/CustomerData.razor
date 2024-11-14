@@ -17,7 +17,7 @@
 		<p>Телефон</p>
 		<div class="phone">
 
-			<p>+7</p><input @bind-value="@phone" @bind-value:event="oninput" maxlength="13" @onkeyup="@PhoneInput" type="tel" placeholder="XXX XXX XX XX" />
+			<p>+7</p><input @bind-value="@phone" @bind-value:event="oninput" maxlength="13" @onkeyup="@PhoneInput" type="numeric" placeholder="XXX XXX XX XX" />
 
 		</div>
 		<p>Примечания</p>
@@ -32,7 +32,7 @@
 		@LeftButton
 
 		<button @onclick="()=>ConfirmBooking()"
-				class=@(CheckData()? "":"blocked-button")>
+		class=@(CheckData()? "":"blocked-button")>
 			Забронироать
 		</button>
 
@@ -60,6 +60,8 @@
 
 	string tempPhone = "";
 	string phone = "";
+	Regex phoneRegex = new Regex("^[0-9 ]+$");
+
 	string extra = "";
 
 	protected override async Task OnInitializedAsync()
@@ -86,8 +88,8 @@
 	{
 		if (name != null && phone != null)
 		{
-			Console.WriteLine((name.Length > 0) && (Regex.Replace(phone, @"\s+", "").Length == 10));
-			return ((name.Length > 0) && (Regex.Replace(phone, @"\s+", "").Length == 10));
+			// Console.WriteLine((name.Length > 0) && (Regex.Replace(phone, @"\s+", "").Length == 10));
+			return ((name.Length > 0) && (Regex.Replace(phone, @"\s+", "").Length == 10) && (phoneRegex.IsMatch(phone)));
 		}
 		return false;
 	}
@@ -118,17 +120,9 @@
 		if (phone != null)
 		{
 
+
 			switch (Regex.Replace(phone, @"\s+", "").Length)
 			{
-				// case 3:
-				// 	phone = phone.Insert(3, " ");
-				// 	// phone = Regex.Replace(phone,@"\s","");
-				// 	return;
-				// case 7:
-				// 	phone = Regex.Replace(phone, @"\s+", "");
-				// 	phone = phone.Insert(3, " ");
-				// 	phone = phone.Insert(7, " ");
-				// 	return;
 
 				case 10:
 
@@ -141,9 +135,7 @@
 
 
 			}
-			// phone = Regex.Replace(phone, @"\s", "");
 
-			// tempPhone = phone;
 			TempSave();
 
 		}

@@ -56,6 +56,11 @@ namespace BlazorApp.Backend
 			return _context.Reservations.Where(p => p.Status == false).ToList(); // Получаем брони которые ещё не подтвердили
 		}
 
+		public List<Booking> GetAllApprovedBooking()
+		{
+			return _context.Reservations.Where(p => p.Status == true).ToList(); // Получаем брони которые ещё не подтвердили
+		}
+
 		public void ApproveBooking(int ID)
 		{
 			var book = _context.Reservations.FirstOrDefault(booking => booking.Id == ID); // Получаем бронь по индексу

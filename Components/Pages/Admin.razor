@@ -6,61 +6,63 @@
 @page "/admin"
 
 <div class="admin">
-	@if (length > 0)
-	{
-		<table>
+
+	<div class="table-controls">
+		<button @onclick="()=>DisplayTable(curType)">Обновить</button>
+		<p><input @onchange="@(() => DisplayTable(BookingsEnum.All))" name="disp" type="radio" value="all" checked="checked">Все записи</p>
+		<p><input @onchange="@(() => DisplayTable(BookingsEnum.Approved))" name="disp" type="radio" value="approved">Одобренные</p>
+		<p><input @onchange="@(() => DisplayTable(BookingsEnum.NotApproved))" name="disp" type="radio" value="notapproved">Не одобренные</p>
+	</div>
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>Номер комнаты</th>
+			<th>Дата</th>
+			<th class="extended">Время</th>
+			<th class="extended">Имя</th>
+			<th class="extended">Телефон</th>
+			<th class="extended">Примечания</th>
+			<th>Статус</th>
+		</tr>
+
+		@foreach (Booking entry in bookings)
+		{
+			int id = entry.Id;
 			<tr>
-				<th>ID</th>
-				<th>Номер комнаты</th>
-				<th>Дата</th>
-				<th class="extended">Время</th>
-				<th class="extended">Имя</th>
-				<th class="extended">Телефон</th>
-				<th class="extended">Примечания</th>
-				<th>Статус</th>
+				<td class="grey">@entry.Id</td>
+				<td>@entry.RoomNumber</td>
+				<td class="grey">@entry.Date</td>
+				<td>@entry.Time:00 - @(entry.Time + 1):00</td>
+				<td>@entry.Name</td>
+				<td class="grey">@entry.Phone</td>
+				<td>@entry.Extra</td>
+				@if (entry.Status == true)
+				{
+					<td class="approved">Одобрена</td>
+				}
+				else
+				{
+
+					Console.WriteLine(id);
+					<td @onclick="()=>ApproveBooking(id)" class="approve">Одобрить</td>
+				}
+				<td class="delete">
+					<button @onclick="()=>DeleteBooking(id)">Удалить</button>
+				</td>
 			</tr>
+		}
+	</table>
 
-			@foreach (Booking entry in bookings)
-			{
-				int id = entry.Id;
-				<tr>
-					<td class="grey">@entry.Id</td>
-					<td>@entry.RoomNumber</td>
-					<td class="grey">@entry.Date</td>
-					<td>@entry.Time:00 - @(entry.Time + 1):00</td>
-					<td>@entry.Name</td>
-					<td class="grey">@entry.Phone</td>
-					<td>@entry.Extra</td>
-					@if (entry.Status == true)
-					{
-						<td class="approved">Одобрена</td>
-					}
-					else
-					{
-					
-						Console.WriteLine(id);
-						<td @onclick="()=>ApproveBooking(id)" class="approve">Одобрить</td>
-					}
-					<td class="delete">
-						<button @onclick="()=>DeleteBooking(id)">Удалить</button>
-						</td>
-				</tr>
-			}
-		</table>
-
-		<div class="table-controls">
-			<button @onclick="()=>bookings = DbManager.GetAllBooking()">Обновить</button>
-		</div>
-	}
-	else
+	@if (length == 0)
 	{
 		<div class="empty">
-			<p>База данных пуста</p>
+			<p>Нет данных</p>
 		</div>
 	}
 
 
-	
+
+
 
 </div>
 
@@ -69,27 +71,57 @@
 	List<Booking> bookings;
 	int length = 0;
 
+	enum BookingsEnum
+	{
+		All,
+		Approved,
+		NotApproved
+	}
+
+	BookingsEnum curType;
+
 	public void ApproveBooking(int id)
 	{
 		Console.WriteLine(id);
 		DbManager.ApproveBooking(id);
-		bookings = DbManager.GetAllBooking();
+		DisplayTable(curType);
 	}
 
 	public void DeleteBooking(int id)
 	{
 		DbManager.DeleteBooking(id);
-		bookings = DbManager.GetAllBooking();
-		length = bookings.Count;
+		DisplayTable(curType);
 		StateHasChanged();
 	}
 
 	protected override async Task OnInitializedAsync()
 	{
-		bookings = DbManager.GetAllBooking();
+		curType = BookingsEnum.All;
+		DisplayTable(curType);
+
+	}
+
+	private void DisplayTable(BookingsEnum value)
+	{
+		switch (value)
+		{
+			case BookingsEnum.All:
+				bookings = DbManager.GetAllBooking();
+
+				break;
+			case BookingsEnum.Approved:
+				bookings = DbManager.GetAllApprovedBooking();
+
+				break;
+			case BookingsEnum.NotApproved:
+				bookings = DbManager.GetAllNotApprovedBooking();
+
+				break;
+		}
 		if (bookings != null)
 		{
 			length = bookings.Count;
 		}
+
 	}
 }
