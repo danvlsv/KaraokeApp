@@ -5,7 +5,7 @@ namespace BlazorApp
     public class CurrentBooking
     {
         /*public int Id { get; private set; } */    // Уникальный идентификатор брони
-		public int RoomNumber { get; private set; }  // Забронированная комната
+		public virtual int RoomNumber { get; private set; }  // Забронированная комната
 		public string Date { get; private set; } // Дата
 		public int? Time { get; private set; } // Время
         public string Name { get; private set; } = ""; // Имя

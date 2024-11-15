@@ -13,7 +13,7 @@ namespace BlazorApp.Backend
             _context = context;
         }
 
-        public void AddNewBooking(int roomNum, string date,int time,string name,string phone,string extra)
+		public void AddNewBooking(int roomNum, string date,int time,string name,string phone,string extra)
         {
             var book = new Booking
             {
@@ -79,7 +79,7 @@ namespace BlazorApp.Backend
 				.ToList(); // Получаем всё занятое время заданной даты
 		}
 
-		public bool IsDayBooked(string date, int room)
+		public virtual bool IsDayBooked(string date, int room)
 		{
 			var list = GetAllBookedTimeOfDay(date,room);
 			if (list.Count >= 24)
