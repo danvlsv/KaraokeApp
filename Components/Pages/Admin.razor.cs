@@ -1,0 +1,65 @@
+﻿using Microsoft.AspNetCore.Components;
+using BlazorApp.Backend;
+
+namespace BlazorApp.Components.Pages
+{
+	public partial class Admin: ComponentBase
+	{
+		List<Booking> bookings;
+		int length = 0;
+
+		enum BookingsEnum
+		{
+			All,
+			Approved,
+			NotApproved
+		}
+
+		BookingsEnum curType;
+
+		public void ApproveBooking(int id)
+		{
+			Console.WriteLine(id);
+			DbManager.ApproveBooking(id);
+			DisplayTable(curType);
+		}
+
+		public void DeleteBooking(int id)
+		{
+			DbManager.DeleteBooking(id);
+			DisplayTable(curType);
+			StateHasChanged();
+		}
+
+		protected override async Task OnInitializedAsync()
+		{
+			curType = BookingsEnum.All;
+			DisplayTable(curType);
+
+		}
+
+		private void DisplayTable(BookingsEnum value)
+		{
+			switch (value)
+			{
+				case BookingsEnum.All:
+					bookings = DbManager.GetAllBooking();
+
+					break;
+				case BookingsEnum.Approved:
+					bookings = DbManager.GetAllApprovedBooking();
+
+					break;
+				case BookingsEnum.NotApproved:
+					bookings = DbManager.GetAllNotApprovedBooking();
+
+					break;
+			}
+			if (bookings != null)
+			{
+				length = bookings.Count;
+			}
+
+		}
+	}
+}
