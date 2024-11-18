@@ -43,13 +43,49 @@ namespace BlazorApp.Backend
 
 		public void DeleteBooking(int ID)
 		{
-			var book = _context.Reservations.FirstOrDefault(booking => booking.Id == ID);  // Получаем бронь по индексу
+			var methods = _context.Reservations.FirstOrDefault(booking => booking.Id == ID);  // Получаем бронь по индексу
+			var book = methods;
+				
 			if (book != null) // Проверяем, существует ли продукт
 			{
+				// вызываем метод удаления
 				_context.Reservations.Remove(book); // Удаляем бронь
 				_context.SaveChanges(); // Сохраняем изменения в базе данных
 			}
 		}
+
+
+
+
+
+		public Booking GetBookingByID(int ID) // репозиторий
+		{
+			return _context.Reservations.FirstOrDefault(booking => booking.Id == ID); // Получаем бронь по индексу
+		}
+
+
+		public void DeleteBookig(Booking book) // репозиторий
+		{
+			_context.Reservations.Remove(book); // Удаляем бронь
+			_context.SaveChanges(); // Сохраняем изменения в базе данных
+		}
+
+
+		public void DeleteBookingService(int ID) // сервис
+		{
+			
+			var book = GetBookingByID(ID);
+
+			if (book != null) // Проверяем, существует ли продукт
+			{
+				// вызываем метод удаления
+				DeleteBookig(book);
+			}
+		}
+
+
+
+
 
 		public List<Booking> GetAllNotApprovedBooking()
 		{
@@ -61,7 +97,7 @@ namespace BlazorApp.Backend
 			return _context.Reservations.Where(p => p.Status == true).ToList(); // Получаем брони которые ещё не подтвердили
 		}
 
-		public void ApproveBooking(int ID)
+		public void ApproveBooking(int ID) 
 		{
 			var book = _context.Reservations.FirstOrDefault(booking => booking.Id == ID); // Получаем бронь по индексу
 			if (book != null) // Проверяем, существует ли бронь
@@ -70,6 +106,9 @@ namespace BlazorApp.Backend
 				_context.SaveChanges(); // Сохраняем изменения в базе данных
 			}
 		}
+
+
+
 
 		public List<int> GetAllBookedTimeOfDay(string date, int room)
 		{
