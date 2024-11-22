@@ -20,13 +20,13 @@ namespace BlazorApp.Components.Pages
 		public void ApproveBooking(int id)
 		{
 			Console.WriteLine(id);
-			DbManager.ApproveBooking(id);
+			DbManager.ApproveBookingService(id);
 			DisplayTable(curType);
 		}
 
 		public void DeleteBooking(int id)
 		{
-			DbManager.DeleteBooking(id);
+			DbManager.DeleteBookingService(id);
 			DisplayTable(curType);
 			StateHasChanged();
 		}

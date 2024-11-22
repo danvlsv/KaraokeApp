@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BlazorApp.Backend;
+using Microsoft.AspNetCore.Components;
 using System.Text.RegularExpressions;
 
 namespace BlazorApp.Components.CustomerData
@@ -55,16 +56,27 @@ namespace BlazorApp.Components.CustomerData
 			return false;
 		}
 
-		private void ConfirmBooking()
+		public void ConfirmBooking()
 		{
 			if (CheckData())
 			{
-				DbManager.AddNewBooking(currentBooking.RoomNumber,
-					currentBooking.Date,
-					(int)currentBooking.Time,
-					currentBooking.Name,
-					"+7 " + currentBooking.Phone,
-					string.IsNullOrWhiteSpace(currentBooking.Extra) ? "Нет" : currentBooking.Extra);
+				var book = new Booking
+				{
+					RoomNumber = currentBooking.RoomNumber,
+					Date = currentBooking.Date,
+					Time = (int)currentBooking.Time,
+					Name = currentBooking.Name,
+					Phone = "+7 " + currentBooking.Phone,
+					Extra = string.IsNullOrWhiteSpace(currentBooking.Extra) ? "Нет" : currentBooking.Extra
+				};
+				//DbManager.AddNewBooking(currentBooking.RoomNumber,
+				//	currentBooking.Date,
+				//	(int)currentBooking.Time,
+				//	currentBooking.Name,
+				//	"+7 " + currentBooking.Phone,
+				//	string.IsNullOrWhiteSpace(currentBooking.Extra) ? "Нет" : currentBooking.Extra);
+				DbManager.AddNewBooking(book);
+
 
 				currentBooking.Complete = true;
 

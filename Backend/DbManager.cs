@@ -13,21 +13,27 @@ namespace BlazorApp.Backend
             _context = context;
         }
 
-		public void AddNewBooking(int roomNum, string date,int time,string name,string phone,string extra)
-        {
-            var book = new Booking
-            {
-                RoomNumber = roomNum,
-                Date = date,
-                Time = time,
-                Name = name,
-                Phone = phone,
-                Extra = extra
-            };
+		//public void AddNewBooking(int roomNum, string date,int time,string name,string phone,string extra)
+  //      {
+  //          var book = new Booking
+  //          {
+  //              RoomNumber = roomNum,
+  //              Date = date,
+  //              Time = time,
+  //              Name = name,
+  //              Phone = phone,
+  //              Extra = extra
+  //          };
 
-            _context.Reservations.Add(book);
-            _context.SaveChanges(); // Сохраняем изменения в базе данных
-        }
+  //          _context.Reservations.Add(book);
+  //          _context.SaveChanges(); // Сохраняем изменения в базе данных
+  //      }
+
+		public void AddNewBooking(Booking book)
+		{
+			_context.Reservations.Add(book);
+			_context.SaveChanges(); // Сохраняем изменения в базе данных
+		}
 
         public List<Booking> GetAllBooking()
         {
@@ -41,37 +47,37 @@ namespace BlazorApp.Backend
 			_context.SaveChanges(); // Сохраняем изменения в базе данных
 		}
 
-		public void DeleteBooking(int ID)
-		{
-			var methods = _context.Reservations.FirstOrDefault(booking => booking.Id == ID);  // Получаем бронь по индексу
-			var book = methods;
+		//public void DeleteBooking(int ID)
+		//{
+		//	var methods = _context.Reservations.FirstOrDefault(booking => booking.Id == ID);  // Получаем бронь по индексу
+		//	var book = methods;
 				
-			if (book != null) // Проверяем, существует ли продукт
-			{
-				// вызываем метод удаления
-				_context.Reservations.Remove(book); // Удаляем бронь
-				_context.SaveChanges(); // Сохраняем изменения в базе данных
-			}
-		}
+		//	if (book != null) // Проверяем, существует ли продукт
+		//	{
+		//		// вызываем метод удаления
+		//		_context.Reservations.Remove(book); // Удаляем бронь
+		//		_context.SaveChanges(); // Сохраняем изменения в базе данных
+		//	}
+		//}
 
 
 
 
 
-		public Booking GetBookingByID(int ID) // репозиторий
+		public virtual Booking? GetBookingByID(int ID) // репозиторий
 		{
 			return _context.Reservations.FirstOrDefault(booking => booking.Id == ID); // Получаем бронь по индексу
 		}
 
 
-		public void DeleteBookig(Booking book) // репозиторий
+		public virtual void DeleteBooking(Booking book) // репозиторий
 		{
 			_context.Reservations.Remove(book); // Удаляем бронь
 			_context.SaveChanges(); // Сохраняем изменения в базе данных
 		}
 
 
-		public void DeleteBookingService(int ID) // сервис
+		public virtual void DeleteBookingService(int ID) // сервис
 		{
 			
 			var book = GetBookingByID(ID);
@@ -79,7 +85,7 @@ namespace BlazorApp.Backend
 			if (book != null) // Проверяем, существует ли продукт
 			{
 				// вызываем метод удаления
-				DeleteBookig(book);
+				DeleteBooking(book);
 			}
 		}
 
@@ -97,20 +103,37 @@ namespace BlazorApp.Backend
 			return _context.Reservations.Where(p => p.Status == true).ToList(); // Получаем брони которые ещё не подтвердили
 		}
 
-		public void ApproveBooking(int ID) 
+		//public void ApproveBooking(int ID) 
+		//{
+		//	var book = _context.Reservations.FirstOrDefault(booking => booking.Id == ID); // Получаем бронь по индексу
+		//	if (book != null) // Проверяем, существует ли бронь
+		//	{
+		//		book.Status = true; // Обновляем статус брони
+		//		_context.SaveChanges(); // Сохраняем изменения в базе данных
+		//	}
+		//}
+
+		public virtual void ApproveBookingService(int ID) // сервис
 		{
-			var book = _context.Reservations.FirstOrDefault(booking => booking.Id == ID); // Получаем бронь по индексу
-			if (book != null) // Проверяем, существует ли бронь
+
+			var book = GetBookingByID(ID);
+
+			if (book != null) // Проверяем, существует ли продукт
 			{
-				book.Status = true; // Обновляем статус брони
-				_context.SaveChanges(); // Сохраняем изменения в базе данных
+				// вызываем метод удаления
+				ApproveBooking(book);
 			}
+		}
+
+		public virtual void ApproveBooking(Booking book) // репозиторий
+		{
+			book.Status = true; // Обновляем статус брони
+			_context.SaveChanges(); // Сохраняем изменения в базе данных
 		}
 
 
 
-
-		public List<int> GetAllBookedTimeOfDay(string date, int room)
+		public virtual List<int> GetAllBookedTimeOfDay(string date, int room)
 		{
 			return _context.Reservations
 				.Where(p => p.Date == date & p.RoomNumber == room)

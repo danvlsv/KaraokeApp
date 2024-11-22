@@ -60,6 +60,7 @@ namespace BlazorApp.Components.TimeChoice
 		public async Task GetAvailableTimes()
 		{
 			Time = DbManager.GetAllBookedTimeOfDay(ChosenDate, ChosenRoom);
+			Time.Add(3);
 		}
 
 		

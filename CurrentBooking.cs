@@ -6,11 +6,11 @@ namespace BlazorApp
     {
         /*public int Id { get; private set; } */    // Уникальный идентификатор брони
 		public virtual int RoomNumber { get; private set; }  // Забронированная комната
-		public string Date { get; private set; } // Дата
-		public int? Time { get; private set; } // Время
-        public string Name { get; private set; } = ""; // Имя
-        public string Phone { get; private set; } = "";// Телефон
-        public string Extra { get; private set; } // Дополнительная информация
+		public virtual string ? Date { get; private set; } // Дата
+		public virtual int? Time { get; private set; } // Время
+        public virtual string? Name { get; private set; } = ""; // Имя
+        public virtual string? Phone { get; private set; } = "";// Телефон
+        public virtual string? Extra { get; private set; } // Дополнительная информация
 
         public bool Complete { get; set; } = false;
 
