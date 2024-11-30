@@ -28,18 +28,6 @@ namespace BlazorApp.Components
 			_mockDbManager = new Mock<DbManager>(_mockDbContext.Object); // Передаем мок в DbManager
 		}
 
-		//[SetUp]
-		//public void Setup()
-		//{
-		//	// Создаем in-memory базу данных
-		//	var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-		//		.UseInMemoryDatabase(databaseName: "TestDatabase")
-		//		.Options;
-
-		//	_context = new ApplicationDbContext(options); // Исправлено на правильный контекст
-		//}
-
-
 
 		#region Calendar.GetAvailableDates() Testing
 		[Fact]
@@ -90,58 +78,64 @@ namespace BlazorApp.Components
 		}
 		#endregion
 
-
-
-
-		#region TimeChoiceCard.GetAvailableTimes() Testing
+		#region TimeChoiceCard.GetBookedTimes() Testing
+		
 		[Fact]
-		public void GetAvailableTime_HasAvailableTime()
+		public void GetBookedTime_HasAvailableTime()
 		{
 			// Arrange
 			_mockCurrentBooking.Setup(m => m.RoomNumber).Returns(1); //Устанавливаем 1 комнату
 			///*_mockCurrentBooking*/.Object.SetDate("30.11.2024");
-			_mockCurrentBooking.Setup(m => m.Date).Returns("30.04.2004"); //устанавливаем дату 30.11.2024
+			_mockCurrentBooking.Setup(m => m.Date).Returns("30.04.2004"); //устанавливаем дату 30.04.2024
 			Services.AddSingleton(_mockCurrentBooking.Object);
 			Services.AddSingleton(_mockDbManager.Object);
 
 			// Настройка мока для DbManager
-			_mockDbManager.Setup(m => m.GetAllBookedTimeOfDay(It.IsAny<string>(), 1)).Returns([6, 8, 12]);
+			_mockDbManager.Setup(m => m.GetAllBookedTimeOfDay(It.IsAny<string>(), 1)).Returns([6, 8, 12]); // 3 занятых промежутка
 
 			var component = RenderComponent<BlazorApp.Components.TimeChoice.TimeChoiceCard>(); // Рэндер компонента
 
 			// Act
-			component.Instance.GetAvailableTimes();
+			component.Instance.GetBookedTimes();
 
 			// Assert
 			// Проверяем, что доступные даты были добавлены
-			Assert.True(component.Instance.Time.Count == 3);
-			Assert.NotEmpty(component.Instance.Time);
+			Assert.True(component.Instance.BookedTime.Count ==3);
+			//Assert.NotEmpty(component.Instance.Time);
 			//Assert.NotEmpty(component.Instance.availableDates);
 		}
 
 
 		[Fact]
-		public void GetAvailableTime_NoAvailableTime()
+		public void GetBookedTime_NoAvailableTime()
 		{
 			// Arrange
 			_mockCurrentBooking.Setup(m => m.RoomNumber).Returns(1); //Устанавливаем 1 комнату
 			///*_mockCurrentBooking*/.Object.SetDate("30.11.2024");
-			_mockCurrentBooking.Setup(m => m.Date).Returns("30.04.2004"); //устанавливаем дату 30.11.2024
+			_mockCurrentBooking.Setup(m => m.Date).Returns("30.04.2004"); //устанавливаем дату 30.04.2024
 			Services.AddSingleton(_mockCurrentBooking.Object);
 			Services.AddSingleton(_mockDbManager.Object);
-			
+
 			// Настройка мока для DbManager
-			_mockDbManager.Setup(m => m.GetAllBookedTimeOfDay(It.IsAny<string>(), 1)).Returns([]);
+			List<int> array = new List<int>();
+			for (int i = 0; i < 24; i++)
+			{
+				array.Add(i);
+			}
+
+			Console.WriteLine(array);
+
+			_mockDbManager.Setup(m => m.GetAllBookedTimeOfDay(It.IsAny<string>(), 1)).Returns(array);
 
 			var component = RenderComponent<BlazorApp.Components.TimeChoice.TimeChoiceCard>(); // Рэндер компонента
 
 			// Act
-			component.Instance.GetAvailableTimes();
+			component.Instance.GetBookedTimes();
 
 			// Assert
 			// Проверяем, что доступные даты были добавлены
 
-			Assert.Empty(component.Instance.Time);
+			Assert.Equal(24,component.Instance.BookedTime.Count);
 
 		}
 
@@ -172,6 +166,7 @@ namespace BlazorApp.Components
 
 
 			_mockDbManager.Object.ApproveBookingService(2);
+			_mockDbManager.Verify(mock => mock.ApproveBookingService(2), Times.Once());
 		}
 
 
@@ -255,6 +250,10 @@ namespace BlazorApp.Components
 			var component = RenderComponent<BlazorApp.Components.CustomerData.CustomerData>(); // Рэндер компонента
 
 			component.Instance.ConfirmBooking();
+
+			_mockDbManager.Verify(mock=>mock.AddNewBooking(It.IsAny<Booking>()),Times.Once());	
+
+			
 		}
 
 
