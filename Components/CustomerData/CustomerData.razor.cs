@@ -18,10 +18,10 @@ namespace BlazorApp.Components.CustomerData
 		string date;
 		int? hour;
 
-		string name = "";
+		public string name = "";
 
 		string tempPhone = "";
-		string phone = "";
+		public string phone = "";
 		Regex phoneRegex = new Regex("^[0-9 ]+$");
 
 		string extra = "";
@@ -46,7 +46,7 @@ namespace BlazorApp.Components.CustomerData
 			currentBooking.SetExtra(extra);
 		}
 
-		private bool CheckData()
+		public bool CheckData()
 		{
 			if (name != null && phone != null)
 			{

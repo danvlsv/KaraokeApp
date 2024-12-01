@@ -8,6 +8,7 @@ using Bunit;
 using Microsoft.AspNetCore.Routing;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 
 
@@ -27,6 +28,7 @@ namespace BlazorApp.Components
 			_mockDbContext = new Mock<ApplicationDbContext>(); // Создаем мок для ApplicationDbContext
 			_mockDbManager = new Mock<DbManager>(_mockDbContext.Object); // Передаем мок в DbManager
 		}
+
 
 
 		#region Calendar.GetAvailableDates() Testing
@@ -101,8 +103,7 @@ namespace BlazorApp.Components
 			// Assert
 			// Проверяем, что доступные даты были добавлены
 			Assert.True(component.Instance.BookedTime.Count ==3);
-			//Assert.NotEmpty(component.Instance.Time);
-			//Assert.NotEmpty(component.Instance.availableDates);
+			
 		}
 
 
@@ -143,98 +144,7 @@ namespace BlazorApp.Components
 
 		#endregion
 
-
-		#region DbManager Testing
-
-		//[Fact]
-		//public void ApproveBookingService_BookingExists()
-		//{
-		//	_mockDbManager.Setup(p => p.GetBookingByID(2)).Returns(new Booking());
-		//	Services.AddSingleton(_mockCurrentBooking.Object);
-		//	Services.AddSingleton(_mockDbManager.Object);
-			
-			
-		//	_mockDbManager.Object.ApproveBookingService(2);
-		//}
-
-		[Fact]
-		public void ApproveBookingService_NoBooking()
-		{
-			_mockDbManager.Setup(p => p.GetBookingByID(2)).Returns((Booking)null);
-			Services.AddSingleton(_mockCurrentBooking.Object);
-			Services.AddSingleton(_mockDbManager.Object);
-
-
-			_mockDbManager.Object.ApproveBookingService(2);
-			_mockDbManager.Verify(mock => mock.ApproveBookingService(2), Times.Once());
-		}
-
-
-
-
-
-		//[Fact]
-		//public void DeleteBookingService_BookingExists()
-		//{
-		//	// Arrange
-		//	var book = new Booking
-		//	{
-		//		Id = 2,
-		//		RoomNumber = 1,
-		//		Date = "30.04.2004",
-		//		Time = 2,
-		//		Name = "Dan",
-		//		Phone = "+79519515021",
-		//		Extra = "Нет",
-		//	};
-
-		//	// Setup mock behavior
-		//	_mockDbManager.Setup(p => p.GetBookingByID(2)).Returns(book);
-		//	_mockDbManager.Setup(p => p.DeleteBooking(book)).Verifiable();
-
-		//	Services.AddSingleton(_mockCurrentBooking.Object);
-		//	Services.AddSingleton(_mockDbManager.Object);
-
-		//	// Act
-		//	_mockDbManager.Object.AddNewBooking(book);
-		//	_mockDbManager.Object.DeleteBookingService(2);
-
-		//	// Assert
-		//	_mockDbManager.Verify(p => p.DeleteBooking(book), Times.Once);
-		//	_mockDbManager.Verify(p => p.GetBookingByID(2), Times.Once);
-		//}
-
-
-		[Fact]
-		public void DeleteBookingService_NoBooking()
-		{
-			_mockDbManager.Setup(p => p.GetBookingByID(2)).Returns((Booking)null);
-			Services.AddSingleton(_mockCurrentBooking.Object);
-			Services.AddSingleton(_mockDbManager.Object);
-
-
-			_mockDbManager.Object.DeleteBookingService(2);
-		}
-
-		#endregion
-
-		//[Fact]
-		//public void ConfirmBooking_CorrectData()
-		//{
-		//	_mockCurrentBooking.Setup(m => m.RoomNumber).Returns(1);
-		//	_mockCurrentBooking.Setup(m => m.Date).Returns("30.04.2004");
-		//	_mockCurrentBooking.Setup(m => m.Time).Returns(2);
-		//	_mockCurrentBooking.Setup(m => m.Phone).Returns("9519515021"); 
-		//	_mockCurrentBooking.Setup(m => m.Name).Returns("Dan");
-
-		//	Services.AddSingleton(_mockCurrentBooking.Object);
-		//	Services.AddSingleton(_mockDbManager.Object);
-
-		//	var component = RenderComponent<BlazorApp.Components.CustomerData.CustomerData>(); // Рэндер компонента
-
-		//	component.Instance.ConfirmBooking();
-		//}
-
+		#region CustomerData.ConfirmBooking() Testing
 		[Fact]
 		public void ConfirmBooking_IncorrectData()
 		{
@@ -249,14 +159,236 @@ namespace BlazorApp.Components
 
 			var component = RenderComponent<BlazorApp.Components.CustomerData.CustomerData>(); // Рэндер компонента
 
+
+			_mockDbManager.Setup(m => m.AddNewBooking(It.IsAny<Booking>()));
 			component.Instance.ConfirmBooking();
 
-			_mockDbManager.Verify(mock=>mock.AddNewBooking(It.IsAny<Booking>()),Times.Once());	
+			_mockDbManager.Verify(mock => mock.AddNewBooking(It.IsAny<Booking>()), Times.Never());
 
-			
+
+		}
+
+		[Fact]
+		public void ConfirmBooking_CorrectData()
+		{
+			_mockCurrentBooking.Setup(m => m.RoomNumber).Returns(1);
+			_mockCurrentBooking.Setup(m => m.Date).Returns("30.04.2004");
+			_mockCurrentBooking.Setup(m => m.Time).Returns(2);
+			_mockCurrentBooking.Setup(m => m.Phone).Returns("9519545021");
+			_mockCurrentBooking.Setup(m => m.Name).Returns("Dan");
+
+			Services.AddSingleton(_mockCurrentBooking.Object);
+			Services.AddSingleton(_mockDbManager.Object);
+
+			var component = RenderComponent<BlazorApp.Components.CustomerData.CustomerData>(); // Рэндер компонента
+
+
+			_mockDbManager.Setup(m => m.AddNewBooking(It.IsAny<Booking>()));
+			component.Instance.ConfirmBooking();
+
+			_mockDbManager.Verify(mock => mock.AddNewBooking(It.IsAny<Booking>()), Times.Once());
+
+
+		}
+
+		#endregion
+
+		#region CustomerData.CheckData() Testing
+
+		[Fact]
+		public void CheckData_CorrectData()
+		{
+			//_mockCurrentBooking.Setup(m => m.RoomNumber).Returns(1);
+			//_mockCurrentBooking.Setup(m => m.Date).Returns("30.04.2004");
+			//_mockCurrentBooking.Setup(m => m.Time).Returns(2);
+			//_mockCurrentBooking.Setup(m => m.Phone).Returns("9519545021");
+			//_mockCurrentBooking.Setup(m => m.Name).Returns("Dan");
+
+			Services.AddSingleton(_mockCurrentBooking.Object);
+			Services.AddSingleton(_mockDbManager.Object);
+
+			var component = RenderComponent<BlazorApp.Components.CustomerData.CustomerData>(); // Рэндер компонента
+
+			component.Instance.phone = "9519545021";
+			component.Instance.name = "Dan";
+
+			//_mockDbManager.Setup(m => m.AddNewBooking(It.IsAny<Booking>()));
+			component.Instance.CheckData();
+
+			Assert.True(component.Instance.CheckData());	
+
+		}
+
+		[Fact]
+		public void CheckData_IncorrectData()
+		{
+			//_mockCurrentBooking.Setup(m => m.RoomNumber).Returns(1);
+			//_mockCurrentBooking.Setup(m => m.Date).Returns("30.04.2004");
+			//_mockCurrentBooking.Setup(m => m.Time).Returns(2);
+			//_mockCurrentBooking.Setup(m => m.Phone).Returns("9519545021");
+			//_mockCurrentBooking.Setup(m => m.Name).Returns("Dan");
+
+			Services.AddSingleton(_mockCurrentBooking.Object);
+			Services.AddSingleton(_mockDbManager.Object);
+
+			var component = RenderComponent<BlazorApp.Components.CustomerData.CustomerData>(); // Рэндер компонента
+
+			component.Instance.phone = "951954502f";
+			component.Instance.name = "Dan";
+
+			//_mockDbManager.Setup(m => m.AddNewBooking(It.IsAny<Booking>()));
+			component.Instance.CheckData();
+
+			Assert.False(component.Instance.CheckData());
+
+		}
+
+		#endregion
+
+
+
+
+		#region DbManager.ApproveBookingService() Testing
+
+		[Fact]
+		public void TO_FIX_ApproveBookingService_BookingExists()
+		{
+			var book = new Booking
+			{
+				Id = 2,
+				RoomNumber = 1,
+				Date = "30.04.2004",
+				Time = 2,
+				Name = "Dan",
+				Phone = "+79519515021",
+				Extra = "Нет",
+			};
+
+			_mockDbManager.Setup(p => p.GetBookingByID(2)).Returns(book);
+			_mockDbManager.Setup(m => m.ApproveBooking(It.IsAny<Booking>())).Verifiable();
+
+
+
+			Services.AddSingleton(_mockCurrentBooking.Object);
+			Services.AddSingleton(_mockDbManager.Object);
+
+			_mockDbManager.Object.ApproveBookingService(2);
+
+			Assert.True(book.Status);
+			//_mockDbContext.Verify(m => m.SaveChanges(), Times.Once);
+
+			//_mockDbManager.Verify(mock => mock.ApproveBooking(book), Times.Once());
+		}
+
+		[Fact]
+		public void TO_FIX_ApproveBookingService_NoBooking()
+		{
+			_mockDbManager.Setup(p => p.GetBookingByID(2)).Returns((Booking)null);
+			Services.AddSingleton(_mockCurrentBooking.Object);
+			Services.AddSingleton(_mockDbManager.Object);
+
+			//Assert.Equal(null, _mockDbManager.Object.GetBookingByID(2));
+
+
+			_mockDbManager.Object.ApproveBookingService(2);
+			_mockDbManager.Verify(mock => mock.ApproveBooking(It.IsAny<Booking>()), Times.Never());
+		}
+
+		#endregion
+
+		#region DbManager.DeleteBookingService() Testing
+
+		[Fact]
+		public void TO_FIX_DeleteBookingService_BookingExists()
+		{
+			// Arrange
+			var book = new Booking
+			{
+				Id = 2,
+				RoomNumber = 1,
+				Date = "30.04.2004",
+				Time = 2,
+				Name = "Dan",
+				Phone = "+79519515021",
+				Extra = "Нет",
+			};
+
+			// Setup mock behavior
+			_mockDbManager.Setup(p => p.GetBookingByID(2)).Returns(book);
+			_mockDbManager.Setup(p => p.DeleteBooking(book)).Verifiable();
+
+			Services.AddSingleton(_mockCurrentBooking.Object);
+			Services.AddSingleton(_mockDbManager.Object);
+
+			// Act
+			_mockDbManager.Object.AddNewBooking(book);
+			_mockDbManager.Object.DeleteBookingService(2);
+
+			// Assert
+			_mockDbManager.Verify(p => p.DeleteBooking(book), Times.Once);
+			_mockDbManager.Verify(p => p.GetBookingByID(2), Times.Once);
 		}
 
 
+		[Fact]
+		public void TO_FIX_DeleteBookingService_NoBooking()
+		{
+			_mockDbManager.Setup(p => p.GetBookingByID(2)).Returns((Booking)null);
+			Services.AddSingleton(_mockCurrentBooking.Object);
+			Services.AddSingleton(_mockDbManager.Object);
 
+
+			_mockDbManager.Object.DeleteBookingService(2);
+		}
+
+		#endregion
+
+
+
+		#region Admin Testing
+
+		[Fact]
+		public void Admin_ApproveBooking()
+		{
+			//_mockCurrentBooking.Setup(m => m.RoomNumber).Returns(1);
+			//_mockCurrentBooking.Setup(m => m.Date).Returns("30.04.2004");
+			//_mockCurrentBooking.Setup(m => m.Time).Returns(2);
+			//_mockCurrentBooking.Setup(m => m.Phone).Returns("9519545021");
+			//_mockCurrentBooking.Setup(m => m.Name).Returns("Dan");
+
+			Services.AddSingleton(_mockCurrentBooking.Object);
+			Services.AddSingleton(_mockDbManager.Object);
+
+			//_mockDbManager.Setup(m => m.ApproveBookingService(It.IsAny<int>()));
+			_mockDbManager.Setup(m => m.GetAllBooking()).Returns(new List<Booking>());
+
+
+			var component = RenderComponent<BlazorApp.Components.Pages.Admin>(); // Рэндер компонента
+
+			component.Instance.ApproveBooking(1);
+
+			_mockDbManager.Verify(m => m.ApproveBookingService(It.IsAny<int>()),Times.Once);
+		}
+
+		[Fact]
+		public void Admin_DeleteBooking()
+		{
+
+
+			Services.AddSingleton(_mockCurrentBooking.Object);
+			Services.AddSingleton(_mockDbManager.Object);
+
+			_mockDbManager.Setup(m => m.GetAllBooking()).Returns(new List<Booking>());
+
+
+			var component = RenderComponent<BlazorApp.Components.Pages.Admin>(); // Рэндер компонента
+
+
+			component.InvokeAsync(() => component.Instance.DeleteBooking(1));
+
+			_mockDbManager.Verify(m => m.DeleteBookingService(It.IsAny<int>()), Times.Once);
+		}
+
+		#endregion
 	}
 }

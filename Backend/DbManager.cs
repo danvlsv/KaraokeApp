@@ -29,13 +29,13 @@ namespace BlazorApp.Backend
   //          _context.SaveChanges(); // Сохраняем изменения в базе данных
   //      }
 
-		public void AddNewBooking(Booking book)
+		public virtual void AddNewBooking(Booking book)
 		{
 			_context.Reservations.Add(book);
 			_context.SaveChanges(); // Сохраняем изменения в базе данных
 		}
 
-        public List<Booking> GetAllBooking()
+        public virtual List<Booking> GetAllBooking()
         {
             return _context.Reservations.ToList(); // Получаем все брони из базы данных
         }
@@ -116,7 +116,7 @@ namespace BlazorApp.Backend
 		public virtual void ApproveBookingService(int ID) // сервис
 		{
 
-			var book = GetBookingByID(ID);
+			Booking? book = GetBookingByID(ID);
 
 			if (book != null) // Проверяем, существует ли продукт
 			{
