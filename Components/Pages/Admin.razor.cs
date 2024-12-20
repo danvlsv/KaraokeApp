@@ -8,7 +8,7 @@ namespace BlazorApp.Components.Pages
 		List<Booking> bookings;
 		int length = 0;
 
-		enum BookingsEnum
+		public enum BookingsEnum
 		{
 			All,
 			Approved,
@@ -20,13 +20,13 @@ namespace BlazorApp.Components.Pages
 		public void ApproveBooking(int id)
 		{
 			Console.WriteLine(id);
-			DbManager.ApproveBooking(id);
+			DbManager.ApproveBookingService(id);
 			DisplayTable(curType);
 		}
 
 		public void DeleteBooking(int id)
 		{
-			DbManager.DeleteBooking(id);
+			DbManager.DeleteBookingService(id);
 			DisplayTable(curType);
 			StateHasChanged();
 		}
@@ -38,7 +38,7 @@ namespace BlazorApp.Components.Pages
 
 		}
 
-		private void DisplayTable(BookingsEnum value)
+		public void DisplayTable(BookingsEnum value)
 		{
 			switch (value)
 			{

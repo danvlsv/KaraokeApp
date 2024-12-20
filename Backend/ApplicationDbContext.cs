@@ -7,8 +7,12 @@ public class ApplicationDbContext : DbContext
     {
     }
 
-    // Определяем DbSet для каждой модели, которую мы хотим использовать
-    public DbSet<Booking> Reservations { get; set; }
+	public ApplicationDbContext()
+	{
+	}
+
+	// Определяем DbSet для каждой модели, которую мы хотим использовать
+	public DbSet<Booking> Reservations { get; set; }
 }
 
 

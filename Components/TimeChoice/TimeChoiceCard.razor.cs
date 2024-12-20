@@ -19,13 +19,13 @@ namespace BlazorApp.Components.TimeChoice
 			}
 
 			// AddBooking();
-			await GetAvailableTimes();
+			await GetBookedTimes();
 			// DeleteBooking();
 		}
 
 
-		string ChosenDate { get; set; }
-		int ChosenRoom { get; set; }
+		public string ChosenDate { get; set; }
+		public int ChosenRoom { get; set; }
 
 
 		int? ChosenTime { get; set; } = null;
@@ -47,19 +47,20 @@ namespace BlazorApp.Components.TimeChoice
 		//Миша добавилл код ниже
 
 		private List<Booking> bookings = null;
-		private List<int> Time = null;
+		public List<int> BookedTime = null;
 
 
-		private void ChooseTime(int? hour)
+		public void ChooseTime(int? hour)
 		{
 			ChosenTime = hour;
 			currentBooking.SetTime(hour);
 		}
 
 
-		private async Task GetAvailableTimes()
+		public async Task GetBookedTimes()
 		{
-			Time = DbManager.GetAllBookedTimeOfDay(ChosenDate, ChosenRoom);
+			BookedTime = DbManager.GetAllBookedTimeOfDay(ChosenDate, ChosenRoom);
+			
 		}
 
 		

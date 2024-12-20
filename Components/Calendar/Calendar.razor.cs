@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BlazorApp.Backend;
+using Microsoft.AspNetCore.Components;
 
 namespace BlazorApp.Components.Calendar
 {
@@ -6,6 +7,9 @@ namespace BlazorApp.Components.Calendar
 	{
 		[Inject]
 		CurrentBooking currentBooking { get; set; }
+
+		[Inject]
+		public DbManager dbManager { get; set; }
 
 		[Parameter]
 		public DateOnly ChosenDate { get; set; }
@@ -27,20 +31,21 @@ namespace BlazorApp.Components.Calendar
 			}
 
 			// Console.WriteLine(chosenRoomNumber);
+			FirstMonday = StartOfWeek();
 			GetAvailableDates();
 		}
 
 		[Parameter]
 		public EventCallback<DateOnly> ChosenDateChanged { get; set; }
 
-		List<DateOnly> availableDates = new List<DateOnly>();
+		public List<DateOnly> availableDates = new List<DateOnly>();
 		
 
 		DateOnly today = DateOnly.FromDateTime(DateTime.Now);
 
 		public static DateOnly StartOfWeek()
 		{
-			Console.Clear();
+			//Console.Clear();
 			DateOnly today = DateOnly.FromDateTime(DateTime.Now);
 			int diff = ((int)today.DayOfWeek + 5) % 6;
 			
@@ -60,7 +65,8 @@ namespace BlazorApp.Components.Calendar
 
 		}
 
-		DateOnly FirstMonday = StartOfWeek();
+		public DateOnly FirstMonday;
+		// = StartOfWeek()
 		DateOnly LastDay;
 
 
@@ -68,19 +74,19 @@ namespace BlazorApp.Components.Calendar
 
 
 
-		private void GetAvailableDates()
+		public async void GetAvailableDates()
 		{
 			LastDay = FirstMonday.AddDays(4 * 7);
 			for (DateOnly day = DateOnly.FromDateTime(DateTime.Now); day <= LastDay; day = day.AddDays(1))
 			{
 				string dayString = day.ToString();
 				
-				if (DbManager.IsDayBooked(dayString, chosenRoomNumber) == false)
+				if (dbManager.IsDayBooked(dayString, chosenRoomNumber) == false)
 				{
 					availableDates.Add(day);
 				}
 			}
-			StateHasChanged();
+			await InvokeAsync(StateHasChanged);
 
 		}
 
