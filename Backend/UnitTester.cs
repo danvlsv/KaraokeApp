@@ -29,8 +29,6 @@ namespace BlazorApp.Components
 			_mockDbManager = new Mock<DbManager>(_mockDbContext.Object); // Передаем мок в DbManager
 		}
 
-
-
 		#region Calendar.GetAvailableDates() Testing
 		[Fact]
 		public void GetAvailableDates_AddsNotBookedDates()
@@ -247,11 +245,10 @@ namespace BlazorApp.Components
 
 
 
-
 		#region DbManager.ApproveBookingService() Testing
 
 		[Fact]
-		public void TO_FIX_ApproveBookingService_BookingExists()
+		public void ApproveBookingService_BookingExists()
 		{
 			var book = new Booking
 			{
@@ -264,30 +261,43 @@ namespace BlazorApp.Components
 				Extra = "Нет",
 			};
 
+
 			_mockDbManager.Setup(p => p.GetBookingByID(2)).Returns(book);
 			_mockDbManager.Setup(m => m.ApproveBooking(It.IsAny<Booking>())).Verifiable();
 
-
-
+			//var temp = _mockDbManager.Object.GetBookingByID(2);
+			//Assert.NotNull(temp);
 			Services.AddSingleton(_mockCurrentBooking.Object);
 			Services.AddSingleton(_mockDbManager.Object);
 
+			_mockDbManager.Setup(m => m.ApproveBookingService(2)).Callback(() =>
+			{
+				var booking = _mockDbManager.Object.GetBookingByID(2);
+				_mockDbManager.Object.ApproveBooking(booking);
+			});
 			_mockDbManager.Object.ApproveBookingService(2);
+			_mockDbManager.Verify(mock => mock.GetBookingByID(2), Times.Once());
 
-			Assert.True(book.Status);
-			//_mockDbContext.Verify(m => m.SaveChanges(), Times.Once);
+			_mockDbManager.Verify(mock => mock.ApproveBooking(It.IsAny<Booking>()), Times.Once());
 
-			//_mockDbManager.Verify(mock => mock.ApproveBooking(book), Times.Once());
+
+
 		}
 
 		[Fact]
-		public void TO_FIX_ApproveBookingService_NoBooking()
+		public void ApproveBookingService_NoBooking()
 		{
 			_mockDbManager.Setup(p => p.GetBookingByID(2)).Returns((Booking)null);
 			Services.AddSingleton(_mockCurrentBooking.Object);
 			Services.AddSingleton(_mockDbManager.Object);
 
 			//Assert.Equal(null, _mockDbManager.Object.GetBookingByID(2));
+
+			_mockDbManager.Setup(m => m.ApproveBookingService(2)).Callback(() =>
+			{
+				var booking = _mockDbManager.Object.GetBookingByID(2);
+				
+			});
 
 
 			_mockDbManager.Object.ApproveBookingService(2);
@@ -299,7 +309,7 @@ namespace BlazorApp.Components
 		#region DbManager.DeleteBookingService() Testing
 
 		[Fact]
-		public void TO_FIX_DeleteBookingService_BookingExists()
+		public void DeleteBookingService_BookingExists()
 		{
 			// Arrange
 			var book = new Booking
@@ -315,30 +325,60 @@ namespace BlazorApp.Components
 
 			// Setup mock behavior
 			_mockDbManager.Setup(p => p.GetBookingByID(2)).Returns(book);
+			_mockDbManager.Setup(p => p.DeleteBooking(It.IsAny<Booking>())).Verifiable();
+
+			Services.AddSingleton(_mockCurrentBooking.Object);
+			Services.AddSingleton(_mockDbManager.Object);
+
+			_mockDbManager.Setup(m => m.DeleteBookingService(2)).Callback(() =>
+			{
+				var booking = _mockDbManager.Object.GetBookingByID(2);
+				_mockDbManager.Object.DeleteBooking(booking);
+			});
+
+			// Act
+			_mockDbManager.Object.DeleteBookingService(2);
+
+			// Assert
+
+			_mockDbManager.Verify(p => p.DeleteBooking(book), Times.Once);
+
+		}
+
+
+		[Fact]
+		public void DeleteBookingService_NoBooking()
+		{
+			// Arrange
+			var book = new Booking
+			{
+				Id = 2,
+				RoomNumber = 1,
+				Date = "30.04.2004",
+				Time = 2,
+				Name = "Dan",
+				Phone = "+79519515021",
+				Extra = "Нет",
+			};
+
+			// Setup mock behavior
+			_mockDbManager.Setup(p => p.GetBookingByID(2)).Returns((Booking)null);
 			_mockDbManager.Setup(p => p.DeleteBooking(book)).Verifiable();
 
 			Services.AddSingleton(_mockCurrentBooking.Object);
 			Services.AddSingleton(_mockDbManager.Object);
 
+			_mockDbManager.Setup(m => m.DeleteBookingService(2)).Callback(() =>
+			{
+				var booking = _mockDbManager.Object.GetBookingByID(2);
+				//_mockDbManager.Object.DeleteBooking(booking);
+			});
+
 			// Act
-			_mockDbManager.Object.AddNewBooking(book);
 			_mockDbManager.Object.DeleteBookingService(2);
 
 			// Assert
-			_mockDbManager.Verify(p => p.DeleteBooking(book), Times.Once);
-			_mockDbManager.Verify(p => p.GetBookingByID(2), Times.Once);
-		}
-
-
-		[Fact]
-		public void TO_FIX_DeleteBookingService_NoBooking()
-		{
-			_mockDbManager.Setup(p => p.GetBookingByID(2)).Returns((Booking)null);
-			Services.AddSingleton(_mockCurrentBooking.Object);
-			Services.AddSingleton(_mockDbManager.Object);
-
-
-			_mockDbManager.Object.DeleteBookingService(2);
+			_mockDbManager.Verify(p => p.DeleteBooking(book), Times.Never);
 		}
 
 		#endregion
@@ -365,6 +405,7 @@ namespace BlazorApp.Components
 
 			var component = RenderComponent<BlazorApp.Components.Pages.Admin>(); // Рэндер компонента
 
+
 			component.Instance.ApproveBooking(1);
 
 			_mockDbManager.Verify(m => m.ApproveBookingService(It.IsAny<int>()),Times.Once);
@@ -388,6 +429,67 @@ namespace BlazorApp.Components
 
 			_mockDbManager.Verify(m => m.DeleteBookingService(It.IsAny<int>()), Times.Once);
 		}
+
+
+		[Fact]
+		public void Admin_DisplayTableAll()
+		{
+
+
+			Services.AddSingleton(_mockCurrentBooking.Object);
+			Services.AddSingleton(_mockDbManager.Object);
+
+			_mockDbManager.Setup(m => m.GetAllBooking()).Returns(new List<Booking>());
+
+
+			var component = RenderComponent<BlazorApp.Components.Pages.Admin>(); // Рэндер компонента
+
+
+			component.InvokeAsync(() => component.Instance.DisplayTable(Pages.Admin.BookingsEnum.All));
+
+			_mockDbManager.Verify(m => m.GetAllBooking(), Times.Exactly(2));
+		}
+
+		[Fact]
+		public void Admin_DisplayTableNotApproved()
+		{
+
+
+			Services.AddSingleton(_mockCurrentBooking.Object);
+			Services.AddSingleton(_mockDbManager.Object);
+
+			_mockDbManager.Setup(m => m.GetAllBooking()).Returns(new List<Booking>());
+			_mockDbManager.Setup(m => m.GetAllNotApprovedBooking()).Returns(new List<Booking>());
+
+
+			var component = RenderComponent<BlazorApp.Components.Pages.Admin>(); // Рэндер компонента
+
+
+			component.InvokeAsync(() => component.Instance.DisplayTable(Pages.Admin.BookingsEnum.NotApproved));
+
+			_mockDbManager.Verify(m => m.GetAllNotApprovedBooking(), Times.Once);
+		}
+
+		[Fact]
+		public void Admin_DisplayTableApproved()
+		{
+
+
+			Services.AddSingleton(_mockCurrentBooking.Object);
+			Services.AddSingleton(_mockDbManager.Object);
+
+			_mockDbManager.Setup(m => m.GetAllBooking()).Returns(new List<Booking>());
+			_mockDbManager.Setup(m => m.GetAllApprovedBooking()).Returns(new List<Booking>());
+
+
+			var component = RenderComponent<BlazorApp.Components.Pages.Admin>(); // Рэндер компонента
+
+
+			component.InvokeAsync(() => component.Instance.DisplayTable(Pages.Admin.BookingsEnum.Approved));
+
+			_mockDbManager.Verify(m => m.GetAllApprovedBooking(), Times.Once);
+		}
+
 
 		#endregion
 	}

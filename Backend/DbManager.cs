@@ -8,7 +8,9 @@ namespace BlazorApp.Backend
     {
         private readonly ApplicationDbContext _context;
 
-        public DbManager(ApplicationDbContext context)
+		public DbManager() { }
+
+		public DbManager(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -93,12 +95,12 @@ namespace BlazorApp.Backend
 
 
 
-		public List<Booking> GetAllNotApprovedBooking()
+		public virtual List<Booking> GetAllNotApprovedBooking()
 		{
 			return _context.Reservations.Where(p => p.Status == false).ToList(); // Получаем брони которые ещё не подтвердили
 		}
 
-		public List<Booking> GetAllApprovedBooking()
+		public virtual List<Booking> GetAllApprovedBooking()
 		{
 			return _context.Reservations.Where(p => p.Status == true).ToList(); // Получаем брони которые ещё не подтвердили
 		}
@@ -116,7 +118,7 @@ namespace BlazorApp.Backend
 		public virtual void ApproveBookingService(int ID) // сервис
 		{
 
-			Booking? book = GetBookingByID(ID);
+			var book = GetBookingByID(ID);
 
 			if (book != null) // Проверяем, существует ли продукт
 			{

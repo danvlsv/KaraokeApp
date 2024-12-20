@@ -8,7 +8,7 @@ namespace BlazorApp.Components.Pages
 		List<Booking> bookings;
 		int length = 0;
 
-		enum BookingsEnum
+		public enum BookingsEnum
 		{
 			All,
 			Approved,
@@ -38,7 +38,7 @@ namespace BlazorApp.Components.Pages
 
 		}
 
-		private void DisplayTable(BookingsEnum value)
+		public void DisplayTable(BookingsEnum value)
 		{
 			switch (value)
 			{
