@@ -8,91 +8,71 @@ namespace BlazorApp.Backend
     {
         private readonly ApplicationDbContext _context;
 
-		public DbManager() { }
+		public DbEdit DbEdit;
+
+		public DbManager() 
+		{
+			DbEdit = new DbEdit(_context);
+		}
 
 		public DbManager(ApplicationDbContext context)
         {
             _context = context;
-        }
+			DbEdit = new DbEdit(_context);
+		}
 
-		//public void AddNewBooking(int roomNum, string date,int time,string name,string phone,string extra)
-  //      {
-  //          var book = new Booking
-  //          {
-  //              RoomNumber = roomNum,
-  //              Date = date,
-  //              Time = time,
-  //              Name = name,
-  //              Phone = phone,
-  //              Extra = extra
-  //          };
 
-  //          _context.Reservations.Add(book);
-  //          _context.SaveChanges(); // Сохраняем изменения в базе данных
-  //      }
+		
+
+		#region calls DbEdit
+
+		public virtual void DeleteBookingService(int ID) // сервис
+		{
+
+			var book = GetBookingByID(ID);
+
+			if (book != null) // Проверяем, существует ли продукт
+			{
+				// вызываем метод удаления
+				DbEdit.DeleteBooking.Execute(book);
+			}
+		}
+
+		public virtual void ApproveBookingService(int ID) // сервис
+		{
+
+			var book = GetBookingByID(ID);
+
+			if (book != null) // Проверяем, существует ли продукт
+			{
+				// вызываем метод
+				DbEdit.ApproveBooking.Execute(book);
+			}
+		}
 
 		public virtual void AddNewBooking(Booking book)
 		{
-			_context.Reservations.Add(book);
-			_context.SaveChanges(); // Сохраняем изменения в базе данных
+			DbEdit.AddBooking.Execute(book);
 		}
 
-        public virtual List<Booking> GetAllBooking()
-        {
-            return _context.Reservations.ToList(); // Получаем все брони из базы данных
-        }
+		#endregion
 
-		public void DeleteAllBooking()
+
+
+
+
+		#region No Saves
+
+		public virtual List<Booking> GetAllBooking()
 		{
-			var allBooking = _context.Reservations.ToList();
-			_context.Reservations.RemoveRange(allBooking); // Удаляем все брони
-			_context.SaveChanges(); // Сохраняем изменения в базе данных
+			return _context.Reservations.ToList(); // Получаем все брони из базы данных
 		}
-
-		//public void DeleteBooking(int ID)
-		//{
-		//	var methods = _context.Reservations.FirstOrDefault(booking => booking.Id == ID);  // Получаем бронь по индексу
-		//	var book = methods;
-				
-		//	if (book != null) // Проверяем, существует ли продукт
-		//	{
-		//		// вызываем метод удаления
-		//		_context.Reservations.Remove(book); // Удаляем бронь
-		//		_context.SaveChanges(); // Сохраняем изменения в базе данных
-		//	}
-		//}
-
-
-
 
 
 		public virtual Booking? GetBookingByID(int ID) // репозиторий
 		{
 			return _context.Reservations.FirstOrDefault(booking => booking.Id == ID); // Получаем бронь по индексу
 		}
-
-
-		public virtual void DeleteBooking(Booking book) // репозиторий
-		{
-			_context.Reservations.Remove(book); // Удаляем бронь
-			_context.SaveChanges(); // Сохраняем изменения в базе данных
-		}
-
-
-		public virtual void DeleteBookingService(int ID) // сервис
-		{
-			
-			var book = GetBookingByID(ID);
-
-			if (book != null) // Проверяем, существует ли продукт
-			{
-				// вызываем метод удаления
-				DeleteBooking(book);
-			}
-		}
-
-
-
 
 
 		public virtual List<Booking> GetAllNotApprovedBooking()
@@ -105,33 +85,6 @@ namespace BlazorApp.Backend
 			return _context.Reservations.Where(p => p.Status == true).ToList(); // Получаем брони которые ещё не подтвердили
 		}
 
-		//public void ApproveBooking(int ID) 
-		//{
-		//	var book = _context.Reservations.FirstOrDefault(booking => booking.Id == ID); // Получаем бронь по индексу
-		//	if (book != null) // Проверяем, существует ли бронь
-		//	{
-		//		book.Status = true; // Обновляем статус брони
-		//		_context.SaveChanges(); // Сохраняем изменения в базе данных
-		//	}
-		//}
-
-		public virtual void ApproveBookingService(int ID) // сервис
-		{
-
-			var book = GetBookingByID(ID);
-
-			if (book != null) // Проверяем, существует ли продукт
-			{
-				// вызываем метод удаления
-				ApproveBooking(book);
-			}
-		}
-
-		public virtual void ApproveBooking(Booking book) // репозиторий
-		{
-			book.Status = true; // Обновляем статус брони
-			_context.SaveChanges(); // Сохраняем изменения в базе данных
-		}
 
 
 
@@ -157,6 +110,38 @@ namespace BlazorApp.Backend
 				return false; // есть свободные слоты
 			}
 		}
+
+#endregion 
+
+#if DEBUG
+
+		public void DeleteAllBooking()
+		{
+			var allBooking = _context.Reservations.ToList();
+			_context.Reservations.RemoveRange(allBooking); // Удаляем все брони
+			_context.SaveChanges(); // Сохраняем изменения в базе данных
+		}
+
+#endif
+
+		//public virtual void DeleteBooking(Booking book) // репозиторий
+		//{
+		//	DbEdit.DeleteBooking.Execute(book);
+		//	//_context.Reservations.Remove(book); // Удаляем бронь
+		//	//_context.SaveChanges(); // Сохраняем изменения в базе данных
+		//}
+
+		//public virtual void ApproveBooking(Booking book) // репозиторий
+		//{
+		//	book.Status = true; // Обновляем статус брони
+		//	_context.SaveChanges(); // Сохраняем изменения в базе данных
+		//}
+
+		//public virtual void AddNewBooking(Booking book)
+		//{
+		//	_context.Reservations.Add(book);
+		//	_context.SaveChanges(); // Сохраняем изменения в базе данных
+		//}
 
 	}
 }
