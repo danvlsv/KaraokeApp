@@ -1,4 +1,5 @@
-﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿using BlazorApp.Backend;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace BlazorApp
 {
@@ -74,6 +75,25 @@ namespace BlazorApp
 		public void SetExtra(string extra)
 		{
 			Extra = extra;
+		}
+	}
+
+    //Adapter
+	public class AdapterToReguralBooking : Booking
+	{
+        Booking booking;
+		public AdapterToReguralBooking(CurrentBooking b)
+		{
+			booking = new Booking
+			{
+				RoomNumber = b.RoomNumber,
+				Date = b.Date,
+				Time = (int)b.Time,
+				Name = b.Name,
+				Phone = "+7 " + b.Phone,
+				Extra = string.IsNullOrWhiteSpace(b.Extra) ? "Нет" : b.Extra,
+                Status = b.Complete
+			};
 		}
 	}
 }
