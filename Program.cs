@@ -1,18 +1,20 @@
 using BlazorApp.Components;
 using Microsoft.EntityFrameworkCore;
-using BlazorApp.Backend;
+using BlazorApp.Services;
 using BlazorApp;
 
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-builder.Services.AddScoped<DbManager>();
+builder.Services.AddHttpClient("DbService", client =>
+{
+	client.BaseAddress = new Uri("https://localhost:7027/"); // URL of DbService
+});
+
+builder.Services.AddScoped<DbService>();
 builder.Services.AddSingleton<CurrentBooking>();
 
 var app = builder.Build();

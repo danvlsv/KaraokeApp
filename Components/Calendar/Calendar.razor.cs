@@ -1,4 +1,4 @@
-﻿using BlazorApp.Backend;
+﻿using BlazorApp.Services;
 using Microsoft.AspNetCore.Components;
 
 namespace BlazorApp.Components.Calendar
@@ -9,7 +9,7 @@ namespace BlazorApp.Components.Calendar
 		CurrentBooking currentBooking { get; set; }
 
 		[Inject]
-		public DbManager dbManager { get; set; }
+		public DbService dbService { get; set; }
 
 		[Parameter]
 		public DateOnly ChosenDate { get; set; }
@@ -81,7 +81,7 @@ namespace BlazorApp.Components.Calendar
 			{
 				string dayString = day.ToString();
 				
-				if (dbManager.IsDayBooked(dayString, chosenRoomNumber) == false)
+				if (await dbService.IsDayBooked(dayString, chosenRoomNumber) == false)
 				{
 					availableDates.Add(day);
 				}

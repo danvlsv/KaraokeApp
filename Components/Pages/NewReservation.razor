@@ -3,8 +3,8 @@
 @inherits LayoutComponentBase
 @rendermode InteractiveServer
 
-@using BlazorApp.Backend
-@inject Backend.DbManager DbManager
+@using BlazorApp.Services
+@inject Services.DbService dbService
 @inject CurrentBooking curBooking;
 
 <PageTitle>Discotheque</PageTitle>
@@ -90,28 +90,28 @@
 	}
 
 
-	private void AddBooking()
-	{
-		// Реализуйте метод для добавления бронирования, например, открыть модальное окно
-		// DbManager.AddNewBooking(1, "30.10.2024", 10, "John Doe", "1234567890", "Дополнительные требования");
-		// DbManager.AddNewBooking(2, "30.10.2024", 12, "Михаил Фёдоровых", "1234123422", "Нет");
-		// DbManager.AddNewBooking(3, "30.10.2024", 11, "Данил Власов", "1111111111", "Нет");
-		// DbManager.AddNewBooking(1, "30.10.2024", 7, "Анна Арланова", "1222222222", "Нет");
-		// // DbManager.AddNewBooking(3, "05.11.2024", 0, "Данил Власов", "1111111111", "Нет");
-		// for (int i=0;i<24;i++)
-		// {
-		// 	DbManager.AddNewBooking(3, "05.11.2024", i, "Данил Власов", "1111111111", "Нет");
-		// }
+	// private void AddBooking()
+	// {
+	// 	// Реализуйте метод для добавления бронирования, например, открыть модальное окно
+	// 	// dbService.AddNewBooking(1, "30.10.2024", 10, "John Doe", "1234567890", "Дополнительные требования");
+	// 	// dbService.AddNewBooking(2, "30.10.2024", 12, "Михаил Фёдоровых", "1234123422", "Нет");
+	// 	// dbService.AddNewBooking(3, "30.10.2024", 11, "Данил Власов", "1111111111", "Нет");
+	// 	// dbService.AddNewBooking(1, "30.10.2024", 7, "Анна Арланова", "1222222222", "Нет");
+	// 	// // dbService.AddNewBooking(3, "05.11.2024", 0, "Данил Власов", "1111111111", "Нет");
+	// 	// for (int i=0;i<24;i++)
+	// 	// {
+	// 	// 	dbService.AddNewBooking(3, "05.11.2024", i, "Данил Власов", "1111111111", "Нет");
+	// 	// }
 		
-		bookings = DbManager.GetAllBooking(); // Обновите список бронирований
-		Console.Clear();
-	}
+	// 	bookings = dbService.GetAllBooking(); // Обновите список бронирований
+	// 	Console.Clear();
+	// }
 
-	private void DeleteBooking()
-	{
-		DbManager.DeleteAllBooking();
-		bookings = DbManager.GetAllBooking(); // Обновите список бронирований
-	}
+	// private void DeleteBooking()
+	// {
+	// 	dbService.DeleteAllBooking();
+	// 	bookings = dbService.GetAllBooking(); // Обновите список бронирований
+	// }
 
 	
 }

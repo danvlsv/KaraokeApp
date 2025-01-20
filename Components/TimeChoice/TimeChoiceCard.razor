@@ -1,50 +1,53 @@
-﻿@using BlazorApp.Backend
-@inject Backend.DbManager DbManager
+﻿@using BlazorApp.Services
+@* @inject Services.DbService dbService *@
 @{
-	// @foreach (var booking in bookings)
-	// {
-	// 	Console.WriteLine(booking.Id + " " + booking.RoomNumber + " " + booking.Date + " " + booking.Time + " " + booking.Name + " " + booking.Phone + " " + booking.Extra + " " + booking.Status);
-	// }
+
 	int hour = 0;
 
-	for (int i = 0; i <= 3; i++)
+	if (BookedTime == null)
 	{
-		<div class="hours-row @(i==3? "bottom-space" :" " )">
-		
-			@for (int j = 0; j <= 5; j++)
-			{
-				int hourNum = hour;
-				// TimeOnly time = new TimeOnly(hour, 0);
-				// Console.WriteLine(hourNum);
+		<p>Загрузка</p>
+	}
+	else
+	{
 
-				if (BookedTime.Contains(hourNum) == false)
+		for (int i = 0; i <= 3; i++)
+		{
+			<div class="hours-row @(i==3? "bottom-space" :" " )">
+
+				@for (int j = 0; j <= 5; j++)
 				{
+					int hourNum = hour;
 
-					// Console.WriteLine("Доступное время");
 
-					<div class="available-time"
-						 style="background-color:@(hourNum==ChosenTime ? "#4CC160" : "white" )"
-						 @onclick="()=>ChooseTime(hourNum)">
-						<p>@hourNum:00</p>
-					</div>
+					if (BookedTime.Contains(hourNum) == false)
+					{
 
+
+						<div class="available-time"
+							 style="background-color:@(hourNum==ChosenTime ? "#4CC160" : "white" )"
+							 @onclick="()=>ChooseTime(hourNum)">
+							<p>@hourNum:00</p>
+						</div>
+
+					}
+					else
+					{
+						<div class="unavailable-time">
+							<p>@hourNum:00</p>
+						</div>
+
+					}
+
+					hour++;
 				}
-				else
-				{
-					<div class="unavailable-time">
-						<p>@hourNum:00</p>
-					</div>
-
-				}
-
-				hour++;
-			}
-		</div>
+			</div>
+		}
 	}
 }
 
 <div class="switcher">
-	
+
 	@if (ChosenTime != null)
 	{
 		<p>Выбран промежуток времени с @ChosenTime:00-@(ChosenTime + 1):00</p>
@@ -58,11 +61,11 @@
 
 		}
 	</div>
-	
+
 
 </div>
 
 @code {
 
-	
+
 }

@@ -1,4 +1,4 @@
-﻿using BlazorApp.Backend;
+﻿using BlazorApp.Services;
 using Microsoft.AspNetCore.Components;
 
 namespace BlazorApp.Components.TimeChoice
@@ -7,6 +7,9 @@ namespace BlazorApp.Components.TimeChoice
 	{
 		[Inject]
 		CurrentBooking currentBooking { get; set; }
+
+		[Inject]
+		public DbService dbService { get; set; }
 
 		protected override async Task OnInitializedAsync()
 		{
@@ -17,9 +20,9 @@ namespace BlazorApp.Components.TimeChoice
 				ChooseTime(currentBooking.Time);
 
 			}
-
+			BookedTime = await dbService.GetAllBookedTimeOfDay(ChosenDate, ChosenRoom);
 			// AddBooking();
-			await GetBookedTimes();
+			//await GetBookedTimes();
 			// DeleteBooking();
 		}
 
@@ -46,8 +49,8 @@ namespace BlazorApp.Components.TimeChoice
 
 		//Миша добавилл код ниже
 
-		private List<Booking> bookings = null;
-		public List<int> BookedTime = null;
+		//private List<Booking> bookings = null;
+		public List<int> BookedTime;
 
 
 		public void ChooseTime(int? hour)
@@ -59,8 +62,8 @@ namespace BlazorApp.Components.TimeChoice
 
 		public async Task GetBookedTimes()
 		{
-			BookedTime = DbManager.GetAllBookedTimeOfDay(ChosenDate, ChosenRoom);
-			
+			BookedTime = await dbService.GetAllBookedTimeOfDay(ChosenDate, ChosenRoom);
+			await InvokeAsync(StateHasChanged);
 		}
 
 		

@@ -1,5 +1,5 @@
-﻿@using BlazorApp.Backend;
-@inject Backend.DbManager DbManager
+﻿@using BlazorApp.Services
+@inject Services.DbService dbService
 
 @rendermode InteractiveServer
 
@@ -25,31 +25,38 @@
 			<th>Статус</th>
 		</tr>
 
-		@foreach (Booking entry in bookings)
+		@if (bookings == null)
 		{
-			int id = entry.Id;
-			<tr>
-				<td class="grey">@entry.Id</td>
-				<td>@entry.RoomNumber</td>
-				<td class="grey">@entry.Date</td>
-				<td>@entry.Time:00 - @(entry.Time + 1):00</td>
-				<td>@entry.Name</td>
-				<td class="grey">@entry.Phone</td>
-				<td>@entry.Extra</td>
-				@if (entry.Status == true)
-				{
-					<td class="approved">Одобрена</td>
-				}
-				else
-				{
+			<p>Загрузка</p>
+		}
+		else
+		{
+			foreach (Booking entry in bookings)
+			{
+				int id = entry.Id;
+				<tr>
+					<td class="grey">@entry.Id</td>
+					<td>@entry.RoomNumber</td>
+					<td class="grey">@entry.Date</td>
+					<td>@entry.Time:00 - @(entry.Time + 1):00</td>
+					<td>@entry.Name</td>
+					<td class="grey">@entry.Phone</td>
+					<td>@entry.Extra</td>
+					@if (entry.Status == true)
+					{
+						<td class="approved">Одобрена</td>
+					}
+					else
+					{
 
-					Console.WriteLine(id);
-					<td @onclick="()=>ApproveBooking(id)" class="approve">Одобрить</td>
-				}
-				<td class="delete">
-					<button @onclick="()=>DeleteBooking(id)">Удалить</button>
-				</td>
-			</tr>
+						Console.WriteLine(id);
+						<td @onclick="()=>ApproveBooking(id)" class="approve">Одобрить</td>
+					}
+					<td class="delete">
+						<button @onclick="()=>DeleteBooking(id)">Удалить</button>
+					</td>
+				</tr>
+			}
 		}
 	</table>
 
@@ -68,5 +75,5 @@
 
 
 @code {
-	
+
 }

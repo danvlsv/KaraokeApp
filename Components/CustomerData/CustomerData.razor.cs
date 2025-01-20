@@ -1,4 +1,4 @@
-﻿using BlazorApp.Backend;
+﻿using BlazorApp.Services;
 using Microsoft.AspNetCore.Components;
 using System.Text.RegularExpressions;
 
@@ -69,13 +69,13 @@ namespace BlazorApp.Components.CustomerData
 					Phone = "+7 " + currentBooking.Phone,
 					Extra = string.IsNullOrWhiteSpace(currentBooking.Extra) ? "Нет" : currentBooking.Extra
 				};
-				//DbManager.AddNewBooking(currentBooking.RoomNumber,
+				//dbService.AddNewBooking(currentBooking.RoomNumber,
 				//	currentBooking.Date,
 				//	(int)currentBooking.Time,
 				//	currentBooking.Name,
 				//	"+7 " + currentBooking.Phone,
 				//	string.IsNullOrWhiteSpace(currentBooking.Extra) ? "Нет" : currentBooking.Extra);
-				DbManager.AddNewBooking(book);
+				dbService.AddNewBooking(book);
 
 
 				currentBooking.Complete = true;

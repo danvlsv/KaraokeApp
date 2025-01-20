@@ -1,9 +1,8 @@
-﻿using BlazorApp.Backend;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace BlazorApp
 {
-    public class CurrentBooking
+	public class CurrentBooking
     {
         /*public int Id { get; private set; } */    // Уникальный идентификатор брони
 		public virtual int RoomNumber { get; private set; }  // Забронированная комната

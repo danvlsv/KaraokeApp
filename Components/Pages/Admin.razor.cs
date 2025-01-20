@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
-using BlazorApp.Backend;
+using BlazorApp.Services;
 
 namespace BlazorApp.Components.Pages
 {
@@ -20,13 +20,13 @@ namespace BlazorApp.Components.Pages
 		public void ApproveBooking(int id)
 		{
 			Console.WriteLine(id);
-			DbManager.ApproveBookingService(id);
+			dbService.ApproveBookingService(id);
 			DisplayTable(curType);
 		}
 
 		public void DeleteBooking(int id)
 		{
-			DbManager.DeleteBookingService(id);
+			dbService.DeleteBookingService(id);
 			DisplayTable(curType);
 			StateHasChanged();
 		}
@@ -34,24 +34,24 @@ namespace BlazorApp.Components.Pages
 		protected override async Task OnInitializedAsync()
 		{
 			curType = BookingsEnum.All;
-			DisplayTable(curType);
-
+			await DisplayTable(curType);
+			StateHasChanged();
 		}
 
-		public void DisplayTable(BookingsEnum value)
+		public async Task DisplayTable(BookingsEnum value)
 		{
 			switch (value)
 			{
 				case BookingsEnum.All:
-					bookings = DbManager.GetAllBooking();
+					bookings = await dbService.GetAllBooking();
 
 					break;
 				case BookingsEnum.Approved:
-					bookings = DbManager.GetAllApprovedBooking();
+					bookings = await dbService.GetAllApprovedBooking();
 
 					break;
 				case BookingsEnum.NotApproved:
-					bookings = DbManager.GetAllNotApprovedBooking();
+					bookings = await dbService.GetAllNotApprovedBooking();
 
 					break;
 			}
