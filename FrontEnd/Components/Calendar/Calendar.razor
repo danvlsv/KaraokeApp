@@ -16,12 +16,11 @@
 
 	@{
 		DateOnly day = FirstMonday;
-		// Console.WriteLine(day);
 	}
 
 	@for (int week = 0; week <= 3; week++)
 	{
-		@* Console.WriteLine(DateTime.Now.DayOfWeek); *@
+		
 		<tr>
 			@for (int i = 0; i <= 6; i++)
 			{
@@ -45,12 +44,6 @@
 		</tr>
 	}
 
-	@{
-		foreach (var date in availableDates)
-		{
-			Console.WriteLine(date);
-		}
-	}
 
 </table>
 

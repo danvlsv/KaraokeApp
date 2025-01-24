@@ -42,7 +42,7 @@ namespace BlazorApp.Components.CustomerData
 		{
 			currentBooking.SetName(name);
 			currentBooking.SetPhone(phone);
-			Console.WriteLine($"\n\n{name}\n{phone}\n{extra}");
+			//Console.WriteLine($"\n\n{name}\n{phone}\n{extra}");
 			currentBooking.SetExtra(extra);
 		}
 

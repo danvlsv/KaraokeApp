@@ -30,7 +30,7 @@ namespace BlazorApp.Components.Calendar
 				ChosenDate = DateOnly.MinValue;
 			}
 
-			// Console.WriteLine(chosenRoomNumber);
+
 			FirstMonday = StartOfWeek();
 			GetAvailableDates();
 		}
@@ -60,7 +60,6 @@ namespace BlazorApp.Components.Calendar
 
 			ChosenDate = DateOnly.Parse(date);
 			currentBooking.SetDate(date);
-			Console.WriteLine($"{date} pressed");
 			await ChosenDateChanged.InvokeAsync(ChosenDate);
 
 		}

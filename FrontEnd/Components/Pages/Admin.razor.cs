@@ -19,14 +19,14 @@ namespace BlazorApp.Components.Pages
 
 		public void ApproveBooking(int id)
 		{
-			Console.WriteLine(id);
-			dbService.ApproveBookingService(id);
+			adminDbService.ApproveBookingService(id);
+			StateHasChanged();
 			DisplayTable(curType);
 		}
 
 		public void DeleteBooking(int id)
 		{
-			dbService.DeleteBookingService(id);
+			adminDbService.DeleteBookingService(id);
 			DisplayTable(curType);
 			StateHasChanged();
 		}
@@ -43,15 +43,15 @@ namespace BlazorApp.Components.Pages
 			switch (value)
 			{
 				case BookingsEnum.All:
-					bookings = await dbService.GetAllBooking();
+					bookings = await adminDbService.GetAllBooking();
 
 					break;
 				case BookingsEnum.Approved:
-					bookings = await dbService.GetAllApprovedBooking();
+					bookings = await adminDbService.GetAllApprovedBooking();
 
 					break;
 				case BookingsEnum.NotApproved:
-					bookings = await dbService.GetAllNotApprovedBooking();
+					bookings = await adminDbService.GetAllNotApprovedBooking();
 
 					break;
 			}

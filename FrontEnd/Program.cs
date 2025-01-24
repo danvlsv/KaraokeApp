@@ -5,7 +5,7 @@ using BlazorApp;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
@@ -14,6 +14,12 @@ builder.Services.AddHttpClient("DbService", client =>
 	client.BaseAddress = new Uri("https://localhost:7027/"); // URL of DbService
 });
 
+builder.Services.AddHttpClient("AdminDbService", client =>
+{
+	client.BaseAddress = new Uri("https://localhost:7076/"); // URL of AdminDbService
+});
+
+builder.Services.AddScoped<AdminDbService>();
 builder.Services.AddScoped<DbService>();
 builder.Services.AddSingleton<CurrentBooking>();
 
