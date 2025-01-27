@@ -1,0 +1,71 @@
+﻿@using BlazorApp.Services
+@* @inject Services.DbService dbService *@
+@{
+
+	int hour = 0;
+
+	if (BookedTime == null)
+	{
+		<p>Загрузка</p>
+	}
+	else
+	{
+
+		for (int i = 0; i <= 3; i++)
+		{
+			<div class="hours-row @(i==3? "bottom-space" :" " )">
+
+				@for (int j = 0; j <= 5; j++)
+				{
+					int hourNum = hour;
+
+
+					if (BookedTime.Contains(hourNum) == false)
+					{
+
+
+						<div class="available-time"
+							 style="background-color:@(hourNum==ChosenTime ? "#4CC160" : "white" )"
+							 @onclick="()=>ChooseTime(hourNum)">
+							<p>@hourNum:00</p>
+						</div>
+
+					}
+					else
+					{
+						<div class="unavailable-time">
+							<p>@hourNum:00</p>
+						</div>
+
+					}
+
+					hour++;
+				}
+			</div>
+		}
+	}
+}
+
+<div class="switcher">
+
+	@if (ChosenTime != null)
+	{
+		<p>Выбран промежуток времени с @ChosenTime:00-@(ChosenTime + 1):00</p>
+
+	}
+	<div class="buttons">
+		@LeftButton
+		@if (ChosenTime != null)
+		{
+			@RightButton
+
+		}
+	</div>
+
+
+</div>
+
+@code {
+
+
+}

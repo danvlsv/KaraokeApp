@@ -1,0 +1,48 @@
+﻿@using System.Text.RegularExpressions;
+@inject NavigationManager NavigationManager
+@inject Services.DbService dbService
+
+<div class="customer-data">
+	<div class="data">
+		<p>Комната №@roomNumber</p>
+		<p>Дата: @date</p>
+		<p>Время: @hour:00-@(hour + 1):00</p>
+	</div>
+	<div class="user-input">
+		<p><strong>Введите свои контактные данные</strong></p>
+
+		<p>Имя</p>
+		<input @bind-value="@name" @bind-value:event="oninput" @onkeyup="@TempSave" />
+
+		<p>Телефон</p>
+		<div class="phone">
+
+			<p>+7</p><input @bind-value="@phone" @bind-value:event="oninput" maxlength="13" @onkeyup="@PhoneInput" type="numeric" placeholder="XXX XXX XX XX" />
+
+		</div>
+		<p>Примечания</p>
+		<input @bind-value="@extra" @bind-value:event="oninput" @onkeyup="@TempSave" />
+	</div>
+</div>
+
+<div class="switcher">
+
+
+	<div class="buttons">
+		@LeftButton
+
+		<button @onclick="()=>ConfirmBooking()"
+		class=@(CheckData()? "":"blocked-button")>
+			Забронироать
+		</button>
+
+
+	</div>
+
+
+</div>
+
+@code {
+
+	
+}

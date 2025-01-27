@@ -1,0 +1,54 @@
+﻿@using BlazorApp.Services
+@* @inject Services.DbService dbService *@
+
+
+<table class="cal" style="width:50%">
+
+	<tr>
+		<th>ПН</th>
+		<th>ВТ</th>
+		<th>СР</th>
+		<th>ЧТ</th>
+		<th>ПТ</th>
+		<th>СБ</th>
+		<th>ВС</th>
+	</tr>
+
+	@{
+		DateOnly day = FirstMonday;
+	}
+
+	@for (int week = 0; week <= 3; week++)
+	{
+		
+		<tr>
+			@for (int i = 0; i <= 6; i++)
+			{
+
+
+				if ((day < today) || (availableDates.Contains(day) == false))
+				{
+					<td class="unavailable-date">@day.ToString()</td>
+				}
+				else
+				{
+					string dayString = day.ToString();
+					<td style="background-color:@(day==ChosenDate ? "#4CC160" : "white")"
+						class="available-date" @onclick="()=>DateChoice(dayString)">
+						@day.ToString()
+					</td>
+				}
+				day = day.AddDays(1);
+
+			}
+		</tr>
+	}
+
+
+</table>
+
+
+
+@code {
+	
+}
